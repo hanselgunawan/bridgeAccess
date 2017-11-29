@@ -1,0 +1,406 @@
+<div class="container" style="margin-top:100px">
+    <section class="content-section-a">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col col-md-9">
+                                <h3 class="box-title">Shopping Cart</h3>
+                            </div>
+                            <div class="col col-md-3 text-right">
+                                <h5><a href="shop">Continue shopping</a></h5>
+                            </div>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box " id="reload">
+                                    <div class="panel panel-default">
+                                        <br>
+                                        <div class="panel-body" >
+                                            <div class="row">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <input type="hidden" name="company_id" id="company_id" value="">
+                                                        <div class="col col-md-4">
+                                                            <img style="height: 100px; width: 100px;" class="img-fluid" src="https://img.goods.ph/G1/M00/05/B4/wKgAAlmgKoeAUJP6AAN6WCqSCVs428_200x200.jpg">
+                                                        </div>
+                                                        <div class="col col-md-4">
+                                                            <h5 class="product-name"><strong>Kingmax Flashdrive</strong></h5>
+                                                        </div>
+                                                        <div class="col col-md-1">
+                                                            <h6><strong>561.34<span class="text-muted">x</span></strong></h6>
+                                                        </div>
+                                                        <div class="col col-md-1">
+                                                            <input type="hidden" name="details_id" id="details_id" value="">
+                                                            <select name="qty" id="qty" class="qty_drop" style="margin-top:5px;">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col col-md-2">
+                                                            <button type="button" class="btn btn-link btn-xs">
+                                                                <button type="button" id="delete_loan" class="del_item btn btn-secondary" data-toggle="tooltip" title="Delete" value=""><i class="fa fa-trash"></i></button>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="border">
+                                        </div>
+                                        <input name="sum" id="sum" type="hidden" value="">
+                                        <input name="header_id" id="header_id" type="hidden" value="">
+                                        <input name="preheader_id" id="preheader_id" type="hidden" value="">
+
+                                        <div class="container">
+                                            <div class="row ">
+                                                <div class="col-sm-11">
+                                                    <h4 class="text-right">Total: <strong>P 200</strong></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col col-md-9 text-right">
+                                                </div>
+                                                <div class="col col-md-2 text-right">
+                                                    <input type="submit" name="submit" id="loan_view" value="Checkout" class="btn btn-warning btn-block" align="right">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="container">
+                                                <div class="row justify-content-center">
+
+                                                    <div class="col col-md-10">
+                                                        <h5 align="left">Shipping Address: </h5>
+                                                        <input type="text" name="shipping_address" id="shipping_address" class="form-control">
+                                                        <p>Bldg/unit #, Street</p>
+                                                        <input type="text" name="shipping_address2" id="shipping_address2" class="form-control">
+                                                        <p>Brgy, City, Province</p>
+                                                        <span class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-md-1">
+                                                    </div>
+                                                    <div class="col col-xs-6">
+                                <span style="font-weight: bold; font-size: 12px;">
+                                    Delivery Information:
+                                        <br />
+                                    3-7 Business days once in transit and free delivery.
+                                </span>
+                                                    </div>
+                                                    <div class="col-md-1"><label>Note: </label></div>
+                                                    <div class="col-md-5">
+                                                        <p style="font-size: 12px;">If you purchased more than 2,000Php, you need to have 2 co-signers. You can download the Co-signer's Agreement form <a href="http://bridgeloan:8080/assets/docs/CoSign.pdf" download="" target="_blank">here</a>. Fill it up and sign it. Take a picture of it and upload it below.</p>
+                                                    </div>
+                                                    <div class="col col-md-1">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <h4><b>Repayment Schedule</b></h4>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Payment Date</th>
+                                                        <th>Payment</th>
+                                                        <th>Principal</th>
+                                                        <th>2% interest</th>
+                                                        <th>Balance</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>Payment Date</td>
+                                                        <td>Payment Amount</td>
+                                                        <td>Breakdown</td>
+                                                        <td>Interest Amount</td>
+                                                        <td>Balance</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>DATE APPROVE</td>
+                                                        <td>PERCENT PRINCIPAL</td>
+                                                        <td>PRINCIPAL</td>
+                                                        <td>MICRO PERCENT</td>
+                                                        <td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <br>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col text-center">
+                                                            <strong >Terms of use</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div style="border: 1px solid #e5e5e5; height: 200px; overflow: auto; padding: 10px;">
+                                                                <p>
+                                                                    <b>Terms & Conditions</b>
+                                                                <ol>
+                                                                    <b><li>Parties</li></b>
+                                                                    This agreement is between Bridge Access and the Shopper.<br /><br />
+                                                                    <b><li>Definitions</li></b>
+                                                                    <ul>
+                                                                        <li type="a">“Bridge Access” is the name of the lender.</li>
+                                                                        <li type="a">“Borrower” means the individual who applied for the loan.</li>
+                                                                        <li type="a">“Coins.ph” is the online wallet used to disburse the money to be loaned. It is also used for repayments.</li>
+                                                                    </ul>
+                                                                    <br />
+                                                                    <b><li>Bridge Access</li></b>
+                                                                    All shoppers are to be assessed by Bridge Access. Bridge Access has the right to decline applicants who did not meet the requirements needed to avail the loan.<br /><br />
+
+                                                                    <li><b>Shopper</b><ol>
+                                                                        The shopper should agree on the terms and conditions before he/she can buy anything. The shopper should submit all the requirements needed for assessment. Failure to submit the necessary information will void the loan application.
+                                                                        <li><b>Eligibility</b><ol>
+                                                                            <b><li>The shopper should be 18 years old and above.</li></b>
+                                                                            <b><li>The shopper should be employed for the past 6 months.</li></b>
+                                                                            <b><li>The shopper should be a regular employee.</li></b></ol>
+                                                                        </li>
+                                                                        <b><li>Requirements</li></b>
+                                                                        Online Wallet (Coins.ph Account)
+                                                                        <br /><br />
+                                                                    </ol>
+                                                                    </li>
+
+                                                                    <b><li>Payment Terms</li></b>
+                                                                    Payment terms depends on how much is the total purchased by the shopper.<br /><br />
+
+                                                                    <b>Terms breakdown:</b><br>
+                                                                    Less than 1,200Php = 2 payouts<br />
+                                                                    1,200Php to 2,000Php = 3 payouts<br />
+                                                                    2,000Php to 5000Php = 6 payouts With Cosigner<br />
+                                                                    5,000Php 10,000Php = 10 payouts With Cosigner<br />
+                                                                    10,000Php to 25,000Php = 18 payouts With Cosigner<br />
+                                                                    25,000Php to 50,000Php = 24 payouts With Cosigner<br /><br />
+
+                                                                    <b><li>Interest Rate</li></b>
+                                                                    Interest is 2% per payout of the total amount purchased.<br /><br />
+
+                                                                    <b><li>Repayments</li></b>
+                                                                    The shopper agrees that his/her salary will be transferred and credited in their Coins.ph account. The shopper also agrees to auto deduct the monthly repayment amount stated above, for the duration of the repayment terms stated above.<br /><br />
+                                                                    The auto deduction will take place after the shopper authorizes Bridge Access to make a deduction on their salary account (Coins.ph account) once the salary is credited onto the shopper’s account.<br /><br />
+
+                                                                    <b><li>Late Repayments</li></b>
+                                                                    Bridge Access will send a reminder via email and text to the shopper 5 days and 2 days before the expected repayment. The email and text reminds the shopper to make the repayment on time. If the shopper fails to make a repayment on time, 20Php per day until the shopper makes the repayment.<br /><br />
+
+                                                                    If the shopper fails to make the repayment on time, Bridge Access will send out a reminder via email and text to the shopper 3 days after the expected repayment. The reminder indicates that the shopper should make the repayment immediately. Human Resources reserves the right to withhold the upcoming salary of the shopper until repayment is made.<br /><br />
+
+                                                                    <b><li>The Shopper Resigns or AWOL (Absent Without Official Leave)</li></b>
+                                                                    If the shopper resigns before the total amount purchased has been repaid, the full purchased amount including the interest, late repayment fees until the day of resignation and the repayment balance will be deducted from the shopper’s final pay. If the final pay does not cover the whole purchased amount, the shopper will be required to pay the remaining balance before being cleared by their respective company.<br /><br />
+
+                                                                    <b><li>Concerns</li></b>
+                                                                    If there are concerns, visit our website https://bridgeaccess.life/user/contact or email directly at access@bridgesoutheast.com. If the concern is urgent the shopper may call at 0998-960-0491.<br /><br />
+
+                                                                    <b><li>Important Information</li></b>
+                                                                    The shopper allows Bridge Access to look at their payroll and is not limited to salary, employee status and standings. All information and documents used in making a loan are confidential and must be kept confidential.
+                                                                    If the shopper fails to comply with the terms and conditions set out on this agreement, Bridge Access reserves the right to take necessary measure to collect the payment together with the corresponding interests and late payment fees, if applicable.<br /><br />
+                                                                </ol>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col text-center">
+                                                            <input checked="checked" disabled type="checkbox" name="agree" id="toggle" style="color:#54bf53;"/> Agree with the terms and conditions
+                                                            <input type="checkbox" name="agree" id="toggle" /> Agree with the terms and conditions
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="border">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h4 class="box-title"><strong>Co - Signer 1</strong></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> First Name:</label>
+                                                        <input type="text" id="fname1" class="form-control" name="fname1">
+                                                        <span class="text-danger">First Name</span>
+                                                    </div >
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Last Name:</label>
+                                                        <input type="text" id="lname1" class="form-control" name="lname1">
+                                                        <span class="text-danger">Last Name</span>
+                                                    </div >
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Contact No.:</label>
+                                                        <input type="text" id="contact1" class="form-control contact1" name="contact1">
+                                                        <span class="text-danger">Contact</span>
+                                                    </div >
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Company:</label>
+                                                        <select name="company1" id="company1" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value=""></option>
+                                                        </select>
+                                                        <span class="text-danger">Company 1</span>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Email:</label>
+                                                        <input type="text" id="email1" class="form-control" name="email1">
+                                                        <span class="text-danger">Email 1</span>
+                                                        <span id="email-txt1"></span>
+                                                    </div >
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h4 class="box-title"><strong>Co - Signer 2</strong></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> First Name:</label>
+                                                        <input type="text" id="fname2" class="form-control" name="fname2">
+                                                        <span class="text-danger">First Name 2</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Last Name:</label>
+                                                        <input type="text" id="lname2" class="form-control" name="lname2">
+                                                        <span class="text-danger">Last Name 2</span>
+                                                    </div >
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Contact No.:</label>
+                                                        <input type="text" id="contact2" class="form-control contact2" name="contact2">
+                                                        <span class="text-danger">Contact 2</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Company:</label>
+                                                        <select name="company2" id="company2" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value=""></option>
+                                                        </select>
+                                                        <span class="text-danger">Company 2</span>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label><span style="color:red";>*</span> Email:</label>
+                                                        <input type="text" id="email2" class="form-control" name="email2">
+                                                        <span class="text-danger">Email 1</span>
+                                                        <span id="email-txt2"></span>
+                                                    </div >
+                                                </div>
+                                                <br>
+                                                <!-- <form> -->
+                                                <div class="row">
+                                                    <div class="col-md-6"><label>Download Co - Sign Form: </label> <a type="button" class="btn btn-warning" href="CoSign.pdf" download target="_blank">Download</a></div>
+                                                    <div class="col-md-6 img-upload">
+                                                        <label>Upload Photo:</label><small> click browse to upload your cosign form here, then you can checkout</small>
+
+                                                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-secondary btn-file">
+                                Browse… <input type="file" id="picture" name="picture">
+                                </span>
+                            </span>
+                                                            <input type="text" class="form-control" style="width:17%" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <br><br><br>
+                </div>
+                <script type="text/javascript">
+                    var base_url = window.location.origin+"/";
+                    var sum = $('#sum').val();
+
+                    $(".qty_drop").on('change', function (){ //change event for select
+                        $.ajax({ //ajax call
+                            type: "POST", //method == POST
+                            url: base_url+'product/change_quantity', //url to be called
+                            data: { 'qty' :  $(this).val(), 'id' : $(this).siblings("input").val() }, //data to be send
+                            dataType:'JSON',
+                            success:function(data){
+                                window.location.reload();
+                                //$( "#reload" ).load( base_url+"dashboard/view_cart #reload" );
+                            }
+                        });
+                    });
+
+                    $('.del_item').click(function() {
+                        if (confirm('Are you sure you want to delete？')) {
+                            var item_id = $(this).val();
+                            $.ajax({
+                                url: base_url+'product/delete_item',
+                                type: 'POST',
+                                data: {'id':item_id},
+                                dataType:'JSON',
+                                success:function(data){
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    });
+
+                    $(document).on('change', '.btn-file :file', function() {
+                        var input = $(this),
+                                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                        input.trigger('fileselect', [label]);
+                    });
+
+                    $('.btn-file :file').on('fileselect', function(event, label) {
+
+                        var input = $(this).parents('.img-upload').find(':text'),
+                                log = label;
+
+                        if( input.length ) {
+                            input.val(log);
+                        } else {
+
+                        }
+                    });
+
+                    if(sum <= 2000){
+                        $('#loan_view').attr('disabled', true);
+                        $('#toggle1').click(function () {
+                            //check if checkbox is checked
+                            if ($(this).is(':checked')) {
+                                $('#loan_view').removeAttr('disabled'); //enable input
+                            } else {
+                                $('#loan_view').attr('disabled', true); //disable input
+                                alert('You must agree with the terms and conditions');
+                            }
+                        });
+                    }else{
+                        $('#loan_view').removeAttr('disabled');
+                    }
+
+                </script>

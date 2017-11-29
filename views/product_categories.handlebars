@@ -1,0 +1,336 @@
+<!-- <?php
+// $this->load->view('layout/client_header');
+?> -->
+<style>
+    /*SET the width to 20% and add 5 items*/
+    /*.carousel-item.active,
+    .carousel-item.active + .carousel-item,
+    .carousel-item.active + .carousel-item  + .carousel-item,
+    .carousel-item.active + .carousel-item  + .carousel-item + .carousel-item,
+    .carousel-item.active + .carousel-item  + .carousel-item + .carousel-item + .carousel-item{
+       width: 20%;
+       display: block;
+       float:left;*/
+    /*}*/
+    /*SET the width to 20% and add 5 items*/
+
+    body{
+        background:#eee;
+    }
+    .thumbnail {
+        position:relative;
+        overflow:hidden;
+    }
+    .thumbnail{
+        opacity:0.90;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+    .thumbnail:hover{
+        opacity:1.00;
+        box-shadow: 0px 0px 10px #808080;
+    }
+    .thumbnail {
+        height: 250px;
+    }
+    a img {
+        max-width: 100%;
+
+        -moz-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    a:hover img {
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    a{
+        text-align: center;
+    }
+    /* Desktops and laptops ----------- */
+    @media only screen  and (min-width : 1224px) {
+        .carousel-control-next {
+            right: -104px;
+        }
+        .carousel-control-prev {
+            left: -104px;
+        }
+    }
+    @media only screen and (min-width : 320px) and (max-width: 480px) {
+        .img-store{
+            padding-right:0px;padding-left: 50px !important;
+        }
+
+
+    }
+
+    @media only screen and (min-width : 480px) and (max-width: 768px) {
+        .img-store{
+            padding-right:0px;padding-left: 50px !important;
+        }
+    }
+
+    .img-store{
+        padding-right:0px;padding-left: 150px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background: transparent no-repeat center center;
+        background-size: 100% 100%;
+    }
+
+    .carousel-control-next-icon {
+        background-image: url('../assets/images/arrow2.png');
+    }
+    .carousel-control-prev-icon {
+        background-image: url('../assets/images/arrow1.png');
+    }
+
+
+
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<section class="content-section-a" style="background-color: #FFF;">
+    <div class="container">
+        <br />
+        <div class="pull-right">
+            <a href="view_cart"><button type="button" class="btn btn-outline-warning btn-sm pull-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</button></a>
+
+        </div>
+        <br />
+        <br />
+
+        <div class="row">
+            <table border="0" align="left" width="80%">
+                <tr>
+                    <td align="right">
+                        <img src="assets/client/img/shop1.png" style="width:130px;"></a>
+                    </td>
+                    <td>
+                        <div class="input-group search-product">
+                            <input type="text" class="form-control" id="search_term" name="search_term" placeholder="Search item..."  onkeyup="do_search();">
+                            <span class="input-group-btn">
+                    <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
+                  </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+            <!--     <div class="row justify-content-center">
+                  <div class="col-lg-8" >
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="search_term" name="search_term" placeholder="Search item..."  onkeyup="do_search();">
+                        <span class="input-group-btn">
+                          <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                  </div>
+                </div> -->
+            <br />
+            <br />
+
+            <div id="result_div">
+                <div class="container">
+
+                    <div class="card">
+
+                        <div class="card-block">
+                            <a href="https://goo.gl/forms/bv5IVn2S71MnP29i1" target="_blank" class="pull-right">
+
+                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                Tell us what you want and we'll find it for you.
+                            </a>
+                            <h5>CATEGORIES</h5>
+                            <br />
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10" >
+                                    <div id="itemslider" class="carousel carousel-showmanymoveone slide" data-ride="carousel">
+                                        <div class="carousel-inner" role="listbox">
+                                            <div class="carousel-item active justify-content-center">
+
+                                                <!--   <div class="carousel-item active"> -->
+                                                <a  href="'.$url.'dashboard/product_category?category='.$val->categoryid1.'""><img style="height:150px;" src="../assets/images/shop/home.jpg" class="d-block img-fluid ml-auto mr-auto"><span  style="font-size:12px; color: rgba(0,0,0,.5);">Home and Living</span></a>
+
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#itemslider" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#itemslider" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- results -->
+                    <br/>
+                    <br />
+                    <!--  <div class="card">
+                       <div class="card-block">     -->
+                    <div class="container">
+                        <h4><b>results for</b></h4>
+                        <br />
+                        <br />
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-sm-3" style="margin-top:30px;">
+                                    <div class="thumbnail"  style="">
+
+                                        <center> <img height="130px;" width="130px;" src="smallimage" alt="" style="margin-bottom: 0.5cm;">
+                                            <fieldset style="font-size: 12px;"></fieldset>
+                                            <div class="pull-center">
+                                                <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱ price</b></p>
+                                                <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div>
+                  </div> -->
+                </div>
+                <div class="card">
+                    <div class="card-block">
+                        <div class="container">
+                            <!-- for each -->
+                            <div class="col-sm-3">
+                                <div class="thumbnail" style="height: 200px;">
+                                    <div class="caption">
+                                        <center><span style="font-size: 12px; color: #f39c12;"><b>categoryid1</b></span>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- else -->
+                <div class="container">
+
+                    <div class="card">
+
+                        <div class="card-block">
+                            <a href="https://goo.gl/forms/bv5IVn2S71MnP29i1" target="_blank" class="pull-right">
+
+                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                Tell us what you want and we'll find it for you.
+                            </a>
+                            <h5>CATEGORIES</h5>
+                            <br />
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10" >
+                                    <div id="itemslider" class="carousel carousel-showmanymoveone slide" data-ride="carousel">
+                                        <div class="carousel-inner" role="listbox">
+                                            <div class="carousel-item active justify-content-center">
+
+                                                <!--   <div class="carousel-item active"> -->
+                                                <a  href="'.$url.'dashboard/product_category?category='.$val->categoryid1.'""><img style="height:150px;" src="../assets/images/shop/home.jpg" class="d-block img-fluid ml-auto mr-auto"><span  style="font-size:12px; color: rgba(0,0,0,.5);">Home and Living</span></a>'
+
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#itemslider" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#itemslider" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row justify-content-center">
+
+                                <div class="container">
+                                    <br />
+                                    <h4>category></h4>
+                                    <br />
+
+                                    <div class="row">
+
+
+                                        <div class="col-sm-3" style="margin-top:30px;">
+                                            <!--  <a  href="<?php base_url()?>view_cart"> -->
+                                            <div class="thumbnail"  style="">
+                                                <center> <img height="130px;" width="130px;" src="smallimage" alt="" style="margin-bottom: 0.5cm;">
+                                                    <fieldset style="font-size: 12px;">name</fieldset>
+                                                    <div class="pull-center">
+                                                        <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱ price</b></p>
+                                                        <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
+                                                    </div>
+                                                </center>
+                                            </div>
+                                            <!--  </a> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div></div>
+
+
+
+
+                    </div>
+</section>
+
+<script type="text/javascript">
+
+    $("#supplier").change(function () {
+        var e = document.getElementById("supplier");
+        var strSup = e.options[e.selectedIndex].value;
+        if (strSup == '1') {
+            $('#prod_list').show();
+        } else {
+            $('#prod_list').hide();
+        }
+
+    });
+
+    function do_search()
+    {
+        var base_url = window.location.origin+"/";
+        var search_term=$("#search_term").val();
+        $.ajax
+        ({
+            type:'post',
+            url:base_url+'dashboard/search_items',
+            data:{
+                search:"search",
+                search_term:search_term
+            },
+            success:function(response)
+            {
+                //document.getElementById("result_div").innerHTML=response;
+            }
+        });
+
+        return false;
+    }
+
+
+</script>

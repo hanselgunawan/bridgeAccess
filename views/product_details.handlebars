@@ -1,0 +1,125 @@
+<!-- <?php
+// $this->load->view('layout/client_header');
+?> -->
+<style type="text/css">
+    /*----------------------
+Product Card Styles
+----------------------*/
+    .panel.panel--styled {
+        background: #FFFFFF;
+    }
+    .panelTop {
+        padding: 30px;
+    }
+
+    .panelBottom {
+        border-top: 1px solid #e7e7e7;
+        padding-top: 20px;
+    }
+    .btn-add-to-cart {
+        background: #FD5A5B;
+        color: #fff;
+    }
+    .btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
+        color: #fff;
+        background: #FD7172;
+        outline: none;
+    }
+    .btn-add-to-cart:active {
+        background: #F9494B;
+        outline: none;
+    }
+
+
+    span.itemPrice {
+        font-size: 24px;
+        color: #FA5B58;
+    }
+
+
+    /*----------------------
+    ##star Rating Styles
+    ----------------------*/
+    .stars {
+        padding-top: 10px;
+        width: 100%;
+        display: inline-block;
+    }
+    span.glyphicon {
+        padding: 5px;
+    }
+    .glyphicon-star-empty {
+        color: #9d9d9d;
+    }
+    .glyphicon-star-empty, .glyphicon-star {
+        font-size: 18px;
+    }
+    .glyphicon-star {
+        color: #FD4;
+        transition: all .25s;
+    }
+    .glyphicon-star:hover {
+        transform: rotate(-15deg) scale(1.3);
+    }
+
+</style>
+<section class="content-section-a" style="background-color: #FFF;">
+    <div class="container">
+        <br />
+        <br />
+        <div class="container" align="center">
+            <div class="row">
+                <div class="col-sm-11">
+
+                    <div class="col-md-12 panelTop">
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="bigimage" alt=""/>
+                        </div>
+                        <div class="col-md-8">
+                            <h2>name</h2>
+                            <p>description</p>
+                        </div>
+                        <input type="hidden" name="item_id" value="id">
+                        <input type="hidden" name="item_name" value="name">
+                        <input type="hidden" name="small_img" value="smallimage">
+                        <input type="hidden" name="desc" value="description">
+                        <input type="hidden" name="price" value="price">
+                        <input type="hidden" name="rtprice" value="retailprice">
+                        <input type="hidden" name="category" value="categoryid1">
+                        <div class="col-md-2" style="padding-top: 15spx;">
+                            <label>Quantity: </label>
+                            <select name="qty" id="qty" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <br/>
+
+                            <h5><span class="itemPrice">₱ price</span></h5>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 panelBottom">
+                        <div class="col-md-12 text-center">
+                            <!-- <span class="glyphicon glyphicon-shopping-cart"><input type="submit" name="submit" id="submit" value="Checkout" class="btn btn-md btn-add-to-cart"></span>Add to Cart -->
+                            <a href="#" onclick="$(this).closest('form').submit()" class="btn btn-xs"  role="button"><button class="btn  btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button></a>
+                            <a href="shop"><button type="button" class="btn btn-default">Back</button></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+</section>
+<br><br><br><br><br>
+<!--  <?php
+  // $this->load->view('layout/client_footer');
+?> -->
+<script type="text/javascript">
+    // function goBack() {
+    //     window.history.back();
+    // }
+</script>

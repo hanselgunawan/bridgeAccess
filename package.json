@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/hanselgunawan/bridgeAccess/issues"
   },
-  "homepage": "https://github.com/hanselgunawan/bridgeAccess#readme"
+  "homepage": "https://github.com/hanselgunawan/bridgeAccess#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10"
+  }
 }
