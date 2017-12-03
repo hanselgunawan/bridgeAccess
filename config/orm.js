@@ -3,27 +3,26 @@ var connection = require("./connection.js");
 // Object Relational Mapper (ORM)
 
 var orm = {
-  selectAll: function(tableName, callback) {
-    var queryString = "SELECT * FROM ??";
+  selectAllCategoryName: function(tableName, callback) {
+    var queryString = "SELECT categoryid1 FROM ?? WHERE categoryid1 != '' AND categoryid1 NOT IN('Groceries','Travel & Luggage') GROUP BY categoryid1";
     connection.query(queryString, [tableName], function(err, result) {
       if(err) throw err;
         callback(result);
     });
   },
-  insertOne: function(tableName, burgerName, burgerStatus, burgerDate, burgerInputName, callback) {
-    var queryString = "INSERT INTO ??(??, ??, ??) VALUES(?, FALSE, CURRENT_TIMESTAMP)";
-    console.log(queryString);
-    connection.query(queryString, [tableName, burgerName, burgerStatus, burgerDate, burgerInputName], function(err, result) {
-      if(err) throw err;
-        callback(result);
-    });
+  findItem: function (tableName, searchQuery, callback) {
+      var queryString = "SELECT * FROM ?? where name LIKE '%" + searchQuery + "%'";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
   },
-  updateOne: function(tableName, tableUpdatedCol, burgerID, callback) {
-    var queryString = "UPDATE ?? SET ?? = TRUE WHERE burgerID = ?";
-    connection.query(queryString, [tableName, tableUpdatedCol, burgerID], function(err, result) {
-      if(err) throw err;
-        callback(result);
-    });
+  findCategory: function (tableName, categorySearch, callback) {
+      var queryString = "SELECT * FROM ?? WHERE categoryid1=\"" + categorySearch + "\"";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
   }
 };
 

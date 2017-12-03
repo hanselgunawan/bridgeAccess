@@ -1,7 +1,7 @@
 /**
  * Created by hansel.tritama on 11/18/17.
  */
-// var burgerModel = require("../models/burger.js");
+var bridgeAccessModel = require("../models/shop_model.js");
 const express = require("express");
 const router = express.Router();
 
@@ -29,7 +29,101 @@ router.get("/product_categories", function (req, res) {
     //         burgers:data
     //     };
     // });
+    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
+        var catFilter = [];
+        for(let i=0;i<catData.length;i++)
+        {
+            catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
+        }
+
+        var obj = {
+            category:catData,
+            categoryFilter: catFilter
+            //categorySearchQuery: req.params.categorySearch.toString().replace("\\", "")
+        };
+        res.render("product_categories", obj);
+    });
+});
+
+router.get("/product_categories/pagination/:page", function (req, res) {
+    // burgerModel.selectAll("burgers", function (data) {
+    //     var obj = {
+    //         burgers:data
+    //     };
+    // });
+    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", req.params.page, function (data) {
+        var obj = {
+            category: data
+        };
+        res.render("product_categories", obj);
+    });
+});
+
+router.get("/product_categories/:category", function (req, res) {
+    // burgerModel.selectAll("burgers", function (data) {
+    //     var obj = {
+    //         burgers:data
+    //     };
+    // });
+    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (data) {
+        var obj = {
+            category: data
+        };
+    });
     res.render("product_categories");
+});
+
+router.get("/search_items/:itemSearch", function (req, res) {
+    // burgerModel.selectAll("burgers", function (data) {
+    //     var obj = {
+    //         burgers:data
+    //     };
+    // });
+    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
+        bridgeAccessModel.findItem("bridge_goodsph_products", req.params.itemSearch, function (searchData) {
+            if(req.params.itemSearch === "")
+            {
+                res.redirect("/product_categories");
+            }
+            else
+            {
+                var obj = {
+                    itemSearch: searchData,
+                    category: catData,
+                    searchQuery: req.params.itemSearch
+                };
+                res.render("product_categories", obj);
+            }
+        });
+    });
+});
+
+router.get("/category/:categorySearch", function (req, res) {
+    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
+        bridgeAccessModel.findCategory("bridge_goodsph_products", req.params.categorySearch, function (categorySearchData) {
+            if(req.params.categorySearch === "")
+            {
+                res.redirect("/product_categories");
+            }
+            else
+            {
+                console.log(catData);
+                var catFilter = [];
+                for(let i=0;i<catData.length;i++)
+                {
+                    catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
+                }
+
+                var obj = {
+                    categorySearch: categorySearchData,
+                    category:catData,
+                    categoryFilter: catFilter,
+                    categorySearchQuery: req.params.categorySearch.replace("\\\\", "")
+                };
+                res.render("product_categories", obj);
+            }
+        });
+    });
 });
 
 router.get("/product_details", function (req, res) {
