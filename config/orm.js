@@ -10,6 +10,13 @@ var orm = {
         callback(result);
     });
   },
+  selectAllProducts: function(tableName, callback) {
+      var queryString = "SELECT * FROM ?? LIMIT 0, 30";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
+  },
   findItem: function (tableName, searchQuery, callback) {
       var queryString = "SELECT * FROM ?? where name LIKE '%" + searchQuery + "%'";
       connection.query(queryString, [tableName], function(err, result) {

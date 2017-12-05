@@ -6,51 +6,33 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
     res.render("cart_display");
 });
 
 router.get("/product_buy", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
     res.render("product_buy");
 });
 
 router.get("/product_categories", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
     bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
         var catFilter = [];
         for(let i=0;i<catData.length;i++)
         {
             catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
         }
-
-        var obj = {
-            category:catData,
-            categoryFilter: catFilter
-            //categorySearchQuery: req.params.categorySearch.toString().replace("\\", "")
-        };
-        res.render("product_categories", obj);
+        bridgeAccessModel.selectAllProducts("bridge_goodsph_products", function (productData) {
+            var obj = {
+                category:catData,
+                categoryFilter: catFilter,
+                product: productData
+                //categorySearchQuery: req.params.categorySearch.toString().replace("\\", "")
+            };
+            res.render("product_categories", obj);
+        });
     });
 });
 
 router.get("/product_categories/pagination/:page", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
     bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", req.params.page, function (data) {
         var obj = {
             category: data
@@ -60,11 +42,6 @@ router.get("/product_categories/pagination/:page", function (req, res) {
 });
 
 router.get("/product_categories/:category", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
     bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (data) {
         var obj = {
             category: data
@@ -73,12 +50,7 @@ router.get("/product_categories/:category", function (req, res) {
     res.render("product_categories");
 });
 
-router.get("/search_items/:itemSearch", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
+router.get("/product_categories/search/:itemSearch", function (req, res) {
     bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
         bridgeAccessModel.findItem("bridge_goodsph_products", req.params.itemSearch, function (searchData) {
             if(req.params.itemSearch === "")
@@ -87,9 +59,16 @@ router.get("/search_items/:itemSearch", function (req, res) {
             }
             else
             {
+                var catFilter = [];
+                for(let i=0;i<catData.length;i++)
+                {
+                    catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
+                }
                 var obj = {
                     itemSearch: searchData,
+                    product: searchData,
                     category: catData,
+                    categoryFilter: catFilter,
                     searchQuery: req.params.itemSearch
                 };
                 res.render("product_categories", obj);

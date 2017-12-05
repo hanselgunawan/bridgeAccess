@@ -1,70 +1,42 @@
-<div class="container">
-    <h4><b>results for</b> {{ searchQuery }}</h4>
-    <br />
-    <br />
-    <div class="container">
-        <div class="row">
-
+<div class="col-md-9">
+    {{#if itemSearch}}
+        <h4><b>Results for</b> {{ searchQuery }}</h4>
+    {{/if}}
+    <div class="row">
+    {{#if itemSearch}}
+        {{#each product}}
             <div class="col-sm-3" style="margin-top:30px;">
                 <div class="thumbnail"  style="">
-
-                    <center> <img height="130px;" width="130px;" src="https://img.goods.ph/G1/M00/03/58/wKgACFmgBt-AHNP8AAAUIK-oZ3M185_200x200.jpg" alt="" style="margin-bottom: 0.5cm;">
-                        <fieldset style="font-size: 12px;">JBL E45BT ON-EAR HEADSET</fieldset>
+                    <center>
+                        <a  href="product_details">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_detail/{{ id }}">
+                        </a>
+                        <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱4990.00</b></p>
-                            <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
+                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
                         </div>
                     </center>
                 </div>
             </div>
+        {{/each}}
+    {{else if searchQuery}}
+        {{> display_not_found}}
+    {{else}}
+        {{#each product}}
             <div class="col-sm-3" style="margin-top:30px;">
                 <div class="thumbnail"  style="">
-
-                    <center> <img height="130px;" width="130px;" src="https://img.goods.ph/G1/M00/03/58/wKgACFmgBt-AHNP8AAAUIK-oZ3M185_200x200.jpg" alt="" style="margin-bottom: 0.5cm;">
-                        <fieldset style="font-size: 12px;">JBL E45BT ON-EAR HEADSET</fieldset>
+                    <center>
+                        <a  href="product_details">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_detail/{{ id }}">
+                        </a>
+                        <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱4990.00</b></p>
-                            <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
+                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
                         </div>
                     </center>
                 </div>
             </div>
-            <div class="col-sm-3" style="margin-top:30px;">
-                <div class="thumbnail"  style="">
-
-                    <center> <img height="130px;" width="130px;" src="https://img.goods.ph/G1/M00/03/58/wKgACFmgBt-AHNP8AAAUIK-oZ3M185_200x200.jpg" alt="" style="margin-bottom: 0.5cm;">
-                        <fieldset style="font-size: 12px;">JBL E45BT ON-EAR HEADSET</fieldset>
-                        <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱4990.00</b></p>
-                            <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-sm-3" style="margin-top:30px;">
-                <div class="thumbnail"  style="">
-
-                    <center> <img height="130px;" width="130px;" src="https://img.goods.ph/G1/M00/03/58/wKgACFmgBt-AHNP8AAAUIK-oZ3M185_200x200.jpg" alt="" style="margin-bottom: 0.5cm;">
-                        <fieldset style="font-size: 12px;">JBL E45BT ON-EAR HEADSET</fieldset>
-                        <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱4990.00</b></p>
-                            <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-sm-3" style="margin-top:30px;">
-                <div class="thumbnail"  style="">
-
-                    <center> <img height="130px;" width="130px;" src="https://img.goods.ph/G1/M00/03/58/wKgACFmgBt-AHNP8AAAUIK-oZ3M185_200x200.jpg" alt="" style="margin-bottom: 0.5cm;">
-                        <fieldset style="font-size: 12px;">JBL E45BT ON-EAR HEADSET</fieldset>
-                        <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱4990.00</b></p>
-                            <a  href="product_details" class="btn btn-warning btn-sm"  role="button">Buy Item</a>
-                        </div>
-                    </center>
-                </div>
-            </div>
-        </div>
+        {{/each}}
+    {{/if}}
     </div>
 </div>

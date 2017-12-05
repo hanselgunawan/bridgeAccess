@@ -48,6 +48,85 @@
     a{
         text-align: center;
     }
+
+    /*NEW CSS*/
+    .border {
+        margin-top:10px;
+        border: #cdcdcd medium solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
+    .mini-menu{
+        width: auto;
+        border-radius: 3px;
+        box-shadow:0 0 8px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #848C8F ;
+        font-size: 11px;
+        margin: 10px;
+    }
+
+    .mini-menu ul {
+        list-style: none;
+        margin: 0;
+        padding:0;
+        text-align:left;
+    }
+
+    .mini-menu > ul > li {
+        position: relative;
+    }
+
+    .mini-menu > ul > li > a {
+        display: block;
+        outline: 0;
+        padding: 1.2em 1em;
+        text-decoration: none;
+        color:#3C3D41;
+        font-weight: normal;
+        letter-spacing: 2px;
+        background: #FEFEFE;
+        border-bottom: 1.5px solid #EAEAEA;
+    }
+
+    .mini-menu .sub > ul {
+        height: 0;
+        overflow: hidden;
+        background: #848C8F;
+    }
+
+    .mini-menu .sub > ul > li > a {
+        font-family:  sans-serif;
+        color:#FEFEFE;
+        font-size: 12px;
+        display: block;
+        text-decoration: none;
+        padding: .7em 1em;
+        text-transform: capitalize;
+        font-style: normal;
+        letter-spacing: 1px;
+    }
+    /*.mini-menu .sub > ul > li > a:hover,*/
+    .mini-menu .sub > a.active,
+    {
+        padding-left: 1.3em;
+        color: blue;
+        content: "1";
+        float: right;
+        margin-right:6px;
+        line-height: 12px;
+    }
+    .mini-menu .sub >  a:after{
+        content: "»";
+        float: right;
+        margin-right:6px;
+        line-height: 12px;
+    }
+
     /* Desktops and laptops ----------- */
     @media only screen  and (min-width : 1224px) {
         .carousel-control-next {
@@ -91,85 +170,22 @@
         background-image: url('../assets/images/arrow1.png');
     }
 
-
-
 </style>
 
-<br />
-<br />
-<br />
-<br />
-<section class="content-section-a" style="background-color: #FFF;">
-    <div class="container">
-        <br />
-        <div class="pull-right">
-            <a href="view_cart"><button type="button" class="btn btn-outline-warning btn-sm pull-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</button></a>
-
-        </div>
-        <br />
-        <br />
-
+{{!-- NEW products_categories --}}
+<section class="content-section-a" style="background-color: #FFF; margin-top: 90px;">
+    <div class="container-fluid">
         <div class="row">
-            <table border="0" align="left" width="80%">
-                <tr>
-                    <td align="right">
-                        <img src="/assets/client/img/shop1.png" style="width:130px;"></a>
-                    </td>
-                    <td>
-                        <div class="input-group search-product">
-                            <input type="text" class="form-control" id="search_term" name="search_term" placeholder="Search item..."  onkeyup="do_search();">
-                            <span class="input-group-btn">
-                                <button class="btn btn-warning searchItem"><i class="fa fa-search"></i></button>
-                  </span>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <br />
-            <br />
-
-            <div id="result_div">
-                <div class="container">
-                    {{> display_category}}
-                    <!--  <div class="card">
-                       <div class="card-block">     -->
-                    {{#if itemSearch}}
-                        {{> display_search}}
-                    {{else if searchQuery}}
-                        {{> display_not_found}}
-                    {{/if}}
-                    <!-- </div>
-                  </div> -->
-                    {{#if categorySearch}}
-                        {{> display_by_category}}
-                    {{/if}}
-                </div>
-                <!--<div class="card">-->
-                    <!--<div class="card-block">-->
-                        <!--<div class="container">-->
-                            <!--&lt;!&ndash; for each &ndash;&gt;-->
-                            <!--<div class="col-sm-3">-->
-                                <!--<div class="thumbnail" style="height: 200px;">-->
-                                    <!--<div class="caption">-->
-                                        <!--<center><span style="font-size: 12px; color: #f39c12;"><b>categoryid1</b></span>-->
-                                        <!--</center>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!-- else -->
-
-                <!--  -->
-
+            {{> display_category}}
+            {{> display_search}}
+        </div>
+    </div>
 </section>
 
 <script type="text/javascript">
 
     $(".searchItem").on("click", function () {
-        window.location.href = "/search_items/"+$("#search_term").val()+"";
+        window.location.href = "/product_categories/search/"+$("#search_term").val()+"";
     });
 
     $("#supplier").change(function () {
@@ -204,5 +220,22 @@
         return false;
     }
 
-
+    $(document).ready(function () {
+        $(".sub > a").click(function() {
+            var ul = $(this).next(),
+                    clone = ul.clone().css({"height":"auto"}).appendTo(".mini-menu"),
+                    height = ul.css("height") === "0px" ? ul[0].scrollHeight + "px" : "0px";
+            clone.remove();
+            ul.animate({"height":height});
+            return false;
+        });
+        $('.mini-menu > ul > li > a').click(function(){
+            $('.sub a').removeClass('active');
+            $(this).addClass('active');
+        }),
+                $('.sub ul li a').click(function(){
+                    $('.sub ul li a').removeClass('active');
+                    $(this).addClass('active');
+                });
+    });
 </script>

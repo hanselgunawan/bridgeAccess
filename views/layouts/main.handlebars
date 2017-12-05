@@ -12,6 +12,7 @@
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+
     <!-- Custom fonts for this template -->
     <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -20,13 +21,13 @@
     <link href="/assets/landing-page.css" rel="stylesheet">
     <link href="/assets/custom.css" rel="stylesheet">
 
-    <script
-            src="https://code.jquery.com/jquery-2.2.4.js"
-            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-            crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
+    {{!-- NEW jQuery and CSS --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <style type="text/css">
 
@@ -107,91 +108,74 @@
     </div>
 </div>
 <!-- MODAL END REFER PAGE -->
+
 <!-- Navigation -->
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top" style="padding-top:2px; padding-bottom:0px; background-color: #FFF;">
-    <div class="container">
-        <table width="280">
-            <tr>
-                <td>
-                    <img src="https://bridgeaccess.life/assets/client/img/img.png" height="100" width="100" class="rounded-circle" alt="User Image">
-                </td>
-                <td>&nbsp; &nbsp;</td>
-                <td>
-                    <font size="3">Welcome Hansel!</font>
-                    <br/>
-                    <p style="font-size: 12px;">
+<div class="container-fluid">
+    <div class="row mt-3">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top" style="padding-top:2px; padding-bottom:0px; background-color: #FFF;">
+
+            {{!-- Name and user profile pic --}}
+            <div class="col-md-1">
+                <img src="https://bridgeaccess.life/assets/client/img/img.png" height="75" width="100" class="rounded-circle" alt="User Image">
+            </div>
+            <div class="col-md-2">
+                <font size="3">Welcome Hansel!</font>
+                <br/>
+                <p style="font-size: 12px;">
                     <font size="2">Bridge Southeast Asia</font>
                     <br/>
                     <font size="2">Developer</font>
                     <br />
                     <a href="dashboard/update_profile?id=1">Profile</a> | <a href="#" id="refer_friend" >Refer a friend</a>
-                    </p>
-                </td>
-            </tr>
-        </table>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive" style="padding-right:45px;">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <ul class="navbar-nav ml-auto" style="padding-top:: -10px;">
-                        <li class="nav-item">
-                            <a class="nav-link" style="padding-top:0px;" href="dashboard">Dashboard &nbsp;&nbsp;</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="padding-top:0px;" href="dashboard/transactions">Transactions &nbsp;&nbsp;</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Notifications</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" style="padding-top:0px;" href="dashboard/contact">Contact &nbsp;&nbsp;</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="padding-top:0px;" href="dashboard/help">Help &nbsp;&nbsp;</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="padding-top:0px;" href="user/logout">Sign Out</a>
-                        </li>
-                    </ul>
-                    <table align="center" id="tblm" width="63%"  border="0" style="margin-right:0px;">
-                        <tr>
-                            <td style="width: 70px; line-height: 15px;">
-                                <span align="center" style="margin:5px; font-size: 12px;">POINTS</span>
-                                <br/>
-                                <span class="label label-success" style="color: orange; margin:6px; font-size: 15px;">100</span>
-                                <br />
-                                <span align="center" style="margin:6px; padding-bottom:5px; font-size: 12px; color: rgba(0,0,0,.5);"><a style="color: rgba(0,0,0,.5);" href="dashboard/redeem_points">redeem</a></span>
-                            </td>
-                            <!-- <td class="vr">&nbsp;&nbsp;</td> -->
-                            <td class="vr">&nbsp;</td>
-                            <td style="width: 70px; line-height: 15px;">
+                </p>
+            </div>
 
+                {{> nav}}
+                {{!-- Scores, points, raffle and wallet balances --}}
+                <div class="row text-center">
+                    <div class="col-md-2" style="padding: 0px;">
+                        <span align="center" style="font-size: 12px;">SCORE</span>
 
+                        <span align="center" style="color: orange;  font-size: 15px;">100</span>
+                        <!--<span class="badge badge-danger"><a style="color:#FFF;" href="dashboard/authenticate">coins.ph</a></span>-->
+                    </div>
+                    <div class="col-md-2" style="padding: 0px;">
+                        <span align="center" style="font-size: 12px;">POINTS</span>
+                        <span class="label label-success" style="color: orange; margin:1px; font-size: 15px;">100</span>
+                        <button class="btn btn-warning" type="submit" style="font-size: 12px; color: rgba(0,0,0,.5); height: 30px;"><a style="color: rgba(0,0,0,.5);" href="dashboard/redeem_points">redeem</a></button>
+                    </div>
+                    <div class="col-md-2" style=" padding: 0px;">
+                        <span align="" style="font-size: 12px;">RAFFLE</span>
 
-                                <span align="" style="font-size: 12px;">  RAFFLE </span>
-                                <br/>
-                                <span class="label label-success" style="color: orange;  font-size: 15px;">100</span><br />
-                                <span align="right" style="font-size: 12px;"><a style="color: rgba(0,0,0,.5);" href="dashboard/convert">convert</a></span>
-                            </td>
-                            <td class="vr">&nbsp;</td>
-                            <td style="line-height: 15px;">
-                                <span align="center" style="margin:5px; font-size: 10px;"> WALLET </span>
-                                <br/>
-                                <span align="center" style="margin:6px; color: orange;  font-size: 15px;">100</span>
-                                <!--<span class="badge badge-danger"><a style="color:#FFF;" href="dashboard/authenticate">coins.ph</a></span>-->
-                                <br />
-                                <span align="center" style="margin:6px; font-size: 12px; color: rgba(0,0,0,.5);">php</span>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-            </ul>
-        </div>
+                        <span class="label label-success" style="color: orange;  font-size: 15px;">100</span>
+                        <button class="btn btn-warning" type="submit" style="font-size: 12px; color: rgba(0,0,0,.5); height: 30px;"><a style="color: rgba(0,0,0,.5);" href="dashboard/convert">convert</a></button>
+                    </div>
+                    <div class="col-md-2" style="padding: 0px;">
+                        <span align="center" style="font-size: 12px;"> WALLET </span>
+
+                        <span align="center" style="color: orange;  font-size: 15px;">₱ 1,000.00</span>
+                        <!--<span class="badge badge-danger"><a style="color:#FFF;" href="dashboard/authenticate">coins.ph</a></span>-->
+                    </div>
+
+                    {{!-- Search and Cart --}}
+                    <div class="col-md-4">
+                        <ul class="navbar-nav ml-auto" style="padding-top: -10px">
+                            <li class="input-group search-product">
+                                <input type="text" class="form-control" id="search_term" style="height: 35px;" name="search_term" placeholder="Search item..."  onkeyup="do_search();">
+                                <span class="input-group-btn">
+                            <button class="btn btn-warning searchItem" type="submit" style="height: 35px;"><i class="fa fa-search"></i></button>
+                            </span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="view_cart"><button type="button" class="btn btn-outline-warning btn-sm pull-right" style="height: 35px; margin-left: 4px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</button></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
-</nav>
-<br />
+</div>
 
 {{{ body }}}
 

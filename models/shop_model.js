@@ -9,6 +9,11 @@ var dbCall = {
             callback(data);
         });
     },
+    selectAllProducts: function (tableName, callback) {
+        orm.selectAllProducts(tableName, function (data) {
+            callback(data);
+        });
+    },
     findItem: function (tableName, searchQuery, callback) {
         orm.findItem(tableName, searchQuery, function (data) {
             callback(data);

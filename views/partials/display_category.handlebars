@@ -1,39 +1,23 @@
-<div class="card">
-    <div class="card-block">
-        <a href="https://goo.gl/forms/bv5IVn2S71MnP29i1" target="_blank" class="pull-right">
-
-            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-            Tell us what you want and we'll find it for you.
-        </a>
+<div class="col-md-3">
+    <div class="border" style="padding: 10px;">
         <h5>CATEGORIES</h5>
-        <br />
-        <div class="row justify-content-center">
-            <div class="col-lg-10" >
-                <div id="itemslider" class="carousel carousel-showmanymoveone slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active justify-content-center">
-                            {{#each categoryFilter}}
-                                <a  href="/category/{{ categoryLink }}"><img style="height:150px;" src="../assets/images/shop/home.jpg" class="d-block img-fluid ml-auto mr-auto">
-                                    <span class="span-cat-name"  style="font-size:12px; color: rgba(0,0,0,.5);">
-                                        {{ categoryid1 }}
-                                    </span>
-                                </a>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="/product_categories/pagination/1" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="/product_categories/pagination/2" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+            <div class="mini-menu">
+                <ul>
+                    {{#each categoryFilter}}
+                        <li class="sub">
+                            <a>
+                                {{ categoryid1 }}
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/category/{{ categoryLink }}"><span  style="font-size: 15px; color: rgba(0,0,0,.5);">Show All</span></a>
+                                </li>
+                                <li><a href="#">Blazer</a></li>
+                                <li><a href="#">Shoes</a></li>
+                            </ul>
+                        </li>
+                    {{/each}}
+                </ul>
             </div>
-        </div>
     </div>
 </div>
-<!-- results -->
-<br/>
-<br />
