@@ -23,6 +23,11 @@ var dbCall = {
         orm.findCategory(tableName, categorySearch, function (data) {
             callback(data);
         });
+    },
+    selectProduct: function (tableName, productId, callback) {
+        orm.selectProduct(tableName, productId, function (data) {
+            callback(data);
+        });
     }
 };
 

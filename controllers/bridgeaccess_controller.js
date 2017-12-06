@@ -105,31 +105,42 @@ router.get("/product_categories/category/:categorySearch", function (req, res) {
     });
 });
 
+router.get("/product_details/:id", function (req, res) {
+    bridgeAccessModel.selectProduct("bridge_goodsph_products", req.params.id, function (productData) {
+        var dropdownList = [];
+        for(let i=0; i<productData[0].instock; i++)
+        {
+            dropdownList.push({dropdownValue: i+1});
+        }
+        var obj = {
+            product: productData[0],
+            dropdownArr: dropdownList
+        };
+        console.log(productData[0]);
+        console.log(dropdownList);
+        res.render("product_details", obj);
+    });
+});
+
 router.get("/product_details", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
-    res.render("product_details");
-});
-
-router.get("/product_items", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
-    res.render("product_items");
-});
-
-router.get("/product_list", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
-    res.render("product_list");
+    console.log("ID: " + req.query.id);
+    console.log("Search: " + req.query.search);
+    bridgeAccessModel.selectProduct("bridge_goodsph_products", req.query.id, function (productData) {
+        var dropdownList = [];
+        for(let i=0; i<productData[0].instock; i++)
+        {
+            dropdownList.push({dropdownValue: i+1});
+        }
+        var obj = {
+            product: productData[0],
+            dropdownArr: dropdownList,
+            searchQuery: req.query.search
+        };
+        console.log(productData[0]);
+        console.log(req.query);
+        console.log(dropdownList);
+        res.render("product_details", obj);
+    });
 });
 
 router.get("/success_checkout", function (req, res) {

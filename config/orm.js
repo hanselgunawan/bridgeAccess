@@ -30,6 +30,13 @@ var orm = {
           if(err) throw err;
           callback(result);
       });
+  },
+  selectProduct: function (tableName, productId, callback) {
+      var queryString = "SELECT * FROM ?? WHERE id = " + productId + "";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
   }
 };
 
