@@ -67,6 +67,20 @@ Product Card Styles
 
 
 
+    /*ZOOM CSS*/
+    #overlay {
+        border: 1px solid black;
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        position: absolute;
+        background-image: url('https://img.goods.ph/G1/M00/05/B4/wKgAAlmgKoeAUJP6AAN6WCqSCVs428_350x350.jpg');
+        background-size: 250%;
+        background-repeat: no-repeat;
+    }
+
+
+
 </style>
 
 {{!-- New product_details --}}
@@ -78,6 +92,8 @@ Product Card Styles
             {{!-- Product picture --}}
             <div class="col-md-4">
                 <img class="img-responsive" src="{{ product.bigimage }}" alt=""/>
+                <!--id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"-->
+                <!--<div id="overlay" onmousemove="zoomIn(event)"></div>-->
             </div>
 
             {{!-- Product descriptions and price --}}
@@ -154,5 +170,21 @@ Product Card Styles
 <script type="text/javascript">
     function goBack() {
         window.history.back();
+    }
+
+    // SCRIPT FOR ZOOM IMAGE
+    function zoomIn(event) {
+        var element = document.getElementById("overlay");
+        element.style.display = "inline-block";
+        var img = document.getElementById("imgZoom");
+        var posX = event.offsetX ? (event.offsetX) : event.pageX - img.offsetLeft;
+        var posY = event.offsetY ? (event.offsetY) : event.pageY - img.offsetTop;
+        element.style.backgroundPosition = (-posX) + "px " + (-posY) + "px";
+
+    }
+
+    function zoomOut() {
+        var element = document.getElementById("overlay");
+        element.style.display = "none";
     }
 </script>

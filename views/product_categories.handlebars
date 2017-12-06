@@ -49,7 +49,14 @@
         text-align: center;
     }
 
-    /*NEW CSS*/
+    h5 {
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    /**************
+     SIDE MENU CSS
+    ***************/
+
     .border {
         margin-top:10px;
         border: #cdcdcd medium solid;
@@ -61,12 +68,12 @@
     .mini-menu{
         width: auto;
         border-radius: 3px;
-        box-shadow:0 0 8px rgba(0, 0, 0, 0.06);
+        /*    box-shadow:0 0 8px rgba(0, 0, 0, 0.06);*/
         overflow: hidden;
         letter-spacing: 2px;
         text-transform: uppercase;
-        color: #848C8F ;
-        font-size: 11px;
+        /*    color: #848C8F;*/
+        font-size: 12px;
         margin: 10px;
     }
 
@@ -81,28 +88,35 @@
         position: relative;
     }
 
+    /*MENU CATEGORY FONTS*/
     .mini-menu > ul > li > a {
         display: block;
         outline: 0;
+        text-align: left;
         padding: 1.2em 1em;
         text-decoration: none;
-        color:#3C3D41;
+        color: #000;
         font-weight: normal;
         letter-spacing: 2px;
-        background: #FEFEFE;
+        /*        background: #FEFEFE;*/
         border-bottom: 1.5px solid #EAEAEA;
+        font-family: 'Josefin Sans', sans-serif;
     }
 
     .mini-menu .sub > ul {
         height: 0;
         overflow: hidden;
-        background: #848C8F;
+        /*        background: #848C8F;*/
     }
 
+
+    /*SUB CATEGORY FONTS*/
     .mini-menu .sub > ul > li > a {
-        font-family:  sans-serif;
-        color:#FEFEFE;
-        font-size: 12px;
+        font-family: 'Josefin Sans', sans-serif;
+        text-align: left;
+        /*        color:#FEFEFE;*/
+        color: rgba(0,0,0,.5);
+        font-size: 13px;
         display: block;
         text-decoration: none;
         padding: .7em 1em;
@@ -110,6 +124,12 @@
         font-style: normal;
         letter-spacing: 1px;
     }
+
+    .mini-menu .sub > ul > li > a:hover{
+        opacity:1.00;
+        color: orange;
+    }
+
     /*.mini-menu .sub > ul > li > a:hover,*/
     .mini-menu .sub > a.active,
     {
@@ -120,12 +140,57 @@
         margin-right:6px;
         line-height: 12px;
     }
-    .mini-menu .sub >  a:after{
-        content: "»";
+
+    .mini-menu .sub >  a:after
+    {
+        /*       content: "»";*/
+        /*        content: "+";*/
         float: right;
         margin-right:6px;
         line-height: 12px;
     }
+
+    /*CARET CSS*/
+    .caret {
+        position: relative;
+    }
+
+    .caret:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top: 5px solid #050505;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+    }
+
+    .caret:after {
+        content: '';
+        position: absolute;
+        left: 30px;
+        top: 0;
+        border-top: -25px solid #eeeeee;
+        border-left: -25px solid transparent;
+        border-right: -25px solid transparent;
+    }
+
+
+
+
+    /*PRICE FILTER*/
+    .ui-slider .ui-slider-handle {
+        position: absolute;
+        z-index: 2;
+        width: 0.7em;
+        height: 1.6em;
+        cursor: default;
+        outline: none;
+        border: 1px solid rgb(207, 207, 207);
+        background: orange;
+        border-image: initial;
+    }
+
 
     /* Desktops and laptops ----------- */
     @media only screen  and (min-width : 1224px) {
@@ -170,12 +235,26 @@
         background-image: url('../assets/images/arrow1.png');
     }
 
+
 </style>
 
 {{!-- NEW products_categories --}}
 <section class="content-section-a" style="background-color: #FFF; margin-top: 90px;">
     <div class="container-fluid">
-        <div class="row">
+        {{!-- SEARCH BAR and CART --}}
+        <div class="row mt-3">
+            <div class="col-md-10 input-group search-product">
+                <input type="text" class="form-control" id="search_term" style="height: 35px;" name="search_term" placeholder="Search item..."  onkeyup="do_search();">
+                <span class="input-group-btn">
+                <button class="btn btn-warning" type="submit" style="height: 35px;"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <div class="col-md-2 nav-item">
+                <a href="view_cart"><button type="button" class="btn btn-outline-warning btn-sm pull-right" style="height: 35px; margin-left: 4px; width: 100%;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</button></a>
+            </div>
+        </div>
+
+        <div class="row mt-3">
             {{> display_category}}
             {{> display_search}}
         </div>
@@ -238,4 +317,29 @@
                     $(this).addClass('active');
                 });
     });
+
+    $( function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 1000,
+            values: [ 190, 728 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( "₱" + ui.values[ 0 ] + " - ₱" + ui.values[ 1 ] );
+                var mi = ui.values[0];
+                var mx = ui.values[1];
+                filterSystem(mi, mx);
+            }
+        });
+        $( "#amount" ).val( "₱" + $( "#slider-range" ).slider( "values", 0 ) +
+                " - ₱" + $( "#slider-range" ).slider( "values", 1 ) );
+    } );
+
+
+    function filterSystem(minPrice, maxPrice) {
+        $(".items div.item").hide().filter(function () {
+            var price = parseInt($(this).data("price"), 10);
+            return price >= minPrice && price <= maxPrice;
+        }).show();
+    }
 </script>
