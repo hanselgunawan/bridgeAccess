@@ -77,7 +77,7 @@ router.get("/product_categories/search/:itemSearch", function (req, res) {
     });
 });
 
-router.get("/category/:categorySearch", function (req, res) {
+router.get("/product_categories/category/:categorySearch", function (req, res) {
     bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
         bridgeAccessModel.findCategory("bridge_goodsph_products", req.params.categorySearch, function (categorySearchData) {
             if(req.params.categorySearch === "")
@@ -94,7 +94,7 @@ router.get("/category/:categorySearch", function (req, res) {
                 }
 
                 var obj = {
-                    categorySearch: categorySearchData,
+                    product: categorySearchData,
                     category:catData,
                     categoryFilter: catFilter,
                     categorySearchQuery: req.params.categorySearch.replace("\\\\", "")
