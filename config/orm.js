@@ -37,6 +37,13 @@ var orm = {
           if(err) throw err;
           callback(result);
       });
+  },
+  selectAllCategoryAndSubcategoryName: function(tableName, callback) {
+      var queryString = "SELECT DISTINCT categoryid1, categoryid2 FROM ?? ORDER BY categoryid1 ASC;";
+      connection.query(queryString, [tableName], function (err, result) {
+          if (err) throw err;
+          callback(result);
+      });
   }
 };
 

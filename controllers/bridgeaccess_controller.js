@@ -5,6 +5,46 @@ var bridgeAccessModel = require("../models/shop_model.js");
 const express = require("express");
 const router = express.Router();
 
+function getCategory(catData)
+{
+    var subCategory = []
+    var catObj = {};
+    var categories = [];
+    for(let i=0; i<catData.length; i++)
+    {
+        if (catData[i].categoryid2 === "" || catData[i].categoryid1 === "")
+            continue;
+        if(i !== catData.length-1 && catData[i].categoryid1 === catData[i+1].categoryid1)
+        {
+            subCategory.push({subcategory: catData[i].categoryid2.replace('\\', ''), subcategoryLink: catData[i].categoryid2.replace('\\', "%5C%5C")});
+        }
+        else if(i === catData.length-1 && catData[i].categoryid1 !== catData[i-1].categoryid1)
+        {
+            catObj['subcat'] = subCategory;
+            catObj["key"] = catData[i-1].categoryid1.replace('\\', '');
+            catObj["categoryLink"] = catData[i].categoryid1.replace('\\', "%5C%5C");
+            categories.push(catObj);
+            categories.push({"key": catData[i].categoryid1.replace('\\', ''), "cateogoryLink": catData[i].categoryid1.replace('\\', "%5C%5C"), 'subcat':{subcategory: catData[i].categoryid2.replace('\\', ''), subcategoryLink: catData[i].categoryid2.replace('\\', "%5C%5C")}});
+            //catObj[catData[i].categoryid1] = [catData[i].categoryid2];
+            //console.log(subCategory);
+            catObj = {};
+        }
+        else
+        {
+            subCategory.push({subcategory: catData[i].categoryid2.replace('\\', ''), subcategoryLink: catData[i].categoryid2.replace('\\', "%5C%5C")});
+            catObj["key"] = catData[i].categoryid1.replace('\\', '');
+            catObj["categoryLink"] = catData[i].categoryid1.replace('\\', "%5C%5C");
+            catObj["subcat"] = subCategory;
+            categories.push(catObj);
+            //console.log(subCategory);
+            subCategory = [];
+            catObj = {};
+        }
+        //console.log(i + ". " + catData[i].categoryid2);
+    }
+    return categories;
+}
+
 router.get("/", function (req, res) {
     res.render("cart_display");
 });
@@ -14,26 +54,20 @@ router.get("/product_buy", function (req, res) {
 });
 
 router.get("/product_categories", function (req, res) {
-    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
-        var catFilter = [];
-        for(let i=0;i<catData.length;i++)
-        {
-            catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
-        }
+    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
         bridgeAccessModel.selectAllProducts("bridge_goodsph_products", function (productData) {
             var obj = {
-                category:catData,
-                categoryFilter: catFilter,
-                product: productData
-                //categorySearchQuery: req.params.categorySearch.toString().replace("\\", "")
+                product: productData,
+                categories: getCategory(catData)
             };
+            //console.log(catObj);
             res.render("product_categories", obj);
         });
     });
 });
 
 router.get("/product_categories/pagination/:page", function (req, res) {
-    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", req.params.page, function (data) {
+    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", req.params.page, function (data) {
         var obj = {
             category: data
         };
@@ -42,7 +76,7 @@ router.get("/product_categories/pagination/:page", function (req, res) {
 });
 
 router.get("/product_categories/:category", function (req, res) {
-    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (data) {
+    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (data) {
         var obj = {
             category: data
         };
@@ -51,7 +85,7 @@ router.get("/product_categories/:category", function (req, res) {
 });
 
 router.get("/product_categories/search/:itemSearch", function (req, res) {
-    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
+    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
         bridgeAccessModel.findItem("bridge_goodsph_products", req.params.itemSearch, function (searchData) {
             if(req.params.itemSearch === "")
             {
@@ -67,9 +101,8 @@ router.get("/product_categories/search/:itemSearch", function (req, res) {
                 var obj = {
                     itemSearch: searchData,
                     product: searchData,
-                    category: catData,
-                    categoryFilter: catFilter,
-                    searchQuery: req.params.itemSearch
+                    searchQuery: req.params.itemSearch,
+                    categories: getCategory(catData)
                 };
                 res.render("product_categories", obj);
             }
@@ -78,7 +111,7 @@ router.get("/product_categories/search/:itemSearch", function (req, res) {
 });
 
 router.get("/product_categories/category/:categorySearch", function (req, res) {
-    bridgeAccessModel.selectAllCategoryName("bridge_goodsph_products", function (catData) {
+    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
         bridgeAccessModel.findCategory("bridge_goodsph_products", req.params.categorySearch, function (categorySearchData) {
             if(req.params.categorySearch === "")
             {
@@ -96,8 +129,8 @@ router.get("/product_categories/category/:categorySearch", function (req, res) {
                 var obj = {
                     product: categorySearchData,
                     category:catData,
-                    categoryFilter: catFilter,
-                    categorySearchQuery: req.params.categorySearch.replace("\\\\", "")
+                    categorySearchQuery: req.params.categorySearch.replace("\\\\", ""),
+                    categories: getCategory(catData)
                 };
                 res.render("product_categories", obj);
             }

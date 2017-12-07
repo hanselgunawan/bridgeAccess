@@ -3,17 +3,18 @@
         <h5>CATEGORIES</h5>
             <div class="mini-menu">
                 <ul>
-                    {{#each categoryFilter}}
+                    {{#each categories}}
                         <li class="sub">
                             <a>
-                                {{ categoryid1 }}
+                                {{ key }}
                             </a>
                             <ul>
                                 <li>
                                     <a href="/product_categories/category/{{ categoryLink }}"><span  style="font-size: 15px; color: rgba(0,0,0,.5);">Show All</span></a>
                                 </li>
-                                <li><a href="#">Blazer</a></li>
-                                <li><a href="#">Shoes</a></li>
+                                {{#each subcat}}
+                                    <li><a href="{{ subcategoryLink }}">{{ subcategory }}</a></li>
+                                {{/each}}
                             </ul>
                         </li>
                     {{/each}}
