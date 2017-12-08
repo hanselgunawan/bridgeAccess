@@ -22,6 +22,7 @@
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
+    "nodemon": "^1.12.5",
     "url": "^0.11.0"
   }
 }

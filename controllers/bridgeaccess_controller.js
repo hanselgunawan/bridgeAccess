@@ -50,6 +50,10 @@ router.get("/", function (req, res) {
     res.render("cart_display");
 });
 
+router.get("/order_display", function (req, res) {
+    res.render("order_display");
+});
+
 router.get("/product_buy", function (req, res) {
     res.render("product_buy");
 });
