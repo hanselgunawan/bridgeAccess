@@ -3,6 +3,7 @@
  */
 var bridgeAccessModel = require("../models/shop_model.js");
 const express = require("express");
+const url = require("url");
 const router = express.Router();
 
 function getCategory(catData)
@@ -75,15 +76,6 @@ router.get("/product_categories/pagination/:page", function (req, res) {
     });
 });
 
-router.get("/product_categories/:category", function (req, res) {
-    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (data) {
-        var obj = {
-            category: data
-        };
-    });
-    res.render("product_categories");
-});
-
 router.get("/product_categories/search/:itemSearch", function (req, res) {
     bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
         bridgeAccessModel.findItem("bridge_goodsph_products", req.params.itemSearch, function (searchData) {
@@ -129,8 +121,8 @@ router.get("/product_categories/category/:categorySearch", function (req, res) {
                 var obj = {
                     product: categorySearchData,
                     category:catData,
-                    categorySearchQuery: req.params.categorySearch.replace("\\\\", ""),
-                    categories: getCategory(catData)
+                    categories: getCategory(catData),
+                    categorySearchQuery: req.params.categorySearch.replace("\\\\", "")
                 };
                 res.render("product_categories", obj);
             }
@@ -156,8 +148,6 @@ router.get("/product_details/:id", function (req, res) {
 });
 
 router.get("/product_details", function (req, res) {
-    console.log("ID: " + req.query.id);
-    console.log("Search: " + req.query.search);
     bridgeAccessModel.selectProduct("bridge_goodsph_products", req.query.id, function (productData) {
         var dropdownList = [];
         for(let i=0; i<productData[0].instock; i++)
@@ -166,12 +156,29 @@ router.get("/product_details", function (req, res) {
         }
         var obj = {
             product: productData[0],
-            dropdownArr: dropdownList,
-            searchQuery: req.query.search
+            dropdownArr: dropdownList
         };
-        console.log(productData[0]);
-        console.log(req.query);
-        console.log(dropdownList);
+        var queryUrl = url.parse(req.url).query;
+        if(req.query.search !== undefined && req.query.category === undefined)
+        {
+            obj["searchQuery"] = req.query.search;
+        }
+        else
+        {
+            // if(req.query.category.indexOf("'")!=="")
+            // {
+            //     obj["categorySearchQuery"] = req.query.category.replace("'", "%5C%5C'");
+            // }
+            let str = queryUrl.substring(queryUrl.lastIndexOf("=")+1, queryUrl.length);
+            obj["categorySearchQuery"] = str.replace("%27", "%5C%5C'");
+        }
+
+        // console.log("HOHOHOHO: " + req.query.category.replace("&", "%26"));
+        console.log("HAHAHAHA: " + obj.categorySearchQuery);
+        // console.log("HEALTH: " + haha.category);
+        // console.log(productData[0]);
+        // console.log(req.query);
+        // console.log(dropdownList);
         res.render("product_details", obj);
     });
 });

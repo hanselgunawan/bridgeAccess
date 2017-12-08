@@ -246,7 +246,7 @@
             <div class="col-md-10 input-group search-product">
                 <input type="text" class="form-control" id="search_term" style="height: 35px;" name="search_term" placeholder="Search item..."  onkeyup="do_search();">
                 <span class="input-group-btn">
-                <button class="btn btn-warning" type="submit" style="height: 35px;"><i class="fa fa-search"></i></button>
+                <button class="btn btn-warning searchItemBtn" type="submit" style="height: 35px;"><i class="fa fa-search"></i></button>
                 </span>
             </div>
             <div class="col-md-2 nav-item">
@@ -263,8 +263,15 @@
 
 <script type="text/javascript">
 
-    $(".searchItem").on("click", function () {
-        window.location.href = "/product_categories/search/"+$("#search_term").val()+"";
+    $(".searchItemBtn").on("click", function () {
+        if($("#search_term").val() === "")
+        {
+            window.location.href = "/product_categories";
+        }
+        else
+        {
+            window.location.href = "/product_categories/search/"+$("#search_term").val()+"";
+        }
     });
 
     $("#supplier").change(function () {
