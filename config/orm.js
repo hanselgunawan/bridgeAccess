@@ -17,6 +17,13 @@ var orm = {
           callback(result);
       });
   },
+  selectPriceRange: function (tableName, callback) {
+      var queryString = "SELECT MAX(price) AS max_price, MIN(price) AS min_price FROM ??";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
+  },
   findItem: function (tableName, searchQuery, callback) {
       var queryString = "SELECT * FROM ?? where name LIKE '%" + searchQuery + "%'";
       connection.query(queryString, [tableName], function(err, result) {
@@ -26,6 +33,13 @@ var orm = {
   },
   findCategory: function (tableName, categorySearch, callback) {
       var queryString = "SELECT * FROM ?? WHERE categoryid1=\"" + categorySearch + "\"";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
+  },
+  findSubCategory: function (tableName, categorySearch, callback) {
+      var queryString = "SELECT * FROM ?? WHERE categoryid2=\"" + categorySearch + "\"";
       connection.query(queryString, [tableName], function(err, result) {
           if(err) throw err;
           callback(result);

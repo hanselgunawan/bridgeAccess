@@ -263,6 +263,7 @@
 
 <script type="text/javascript">
 
+
     $(".searchItemBtn").on("click", function () {
         if($("#search_term").val() === "")
         {
@@ -328,13 +329,15 @@
     $( function() {
         $( "#slider-range" ).slider({
             range: true,
-            min: 0,
-            max: 1000,
-            values: [ 190, 728 ],
+            min: {{ priceRange.min_price }},
+            max: {{ priceRange.max_price }},
+            values: [ {{priceRange.min_price}}, {{priceRange.max_price}} ],
             slide: function( event, ui ) {
                 $( "#amount" ).val( "₱" + ui.values[ 0 ] + " - ₱" + ui.values[ 1 ] );
                 var mi = ui.values[0];
                 var mx = ui.values[1];
+                $("#slider-range").attr("mininput", mi);
+                $("#slider-range").attr("maxinput", mx);
                 filterSystem(mi, mx);
             }
         });
@@ -349,4 +352,16 @@
             return price >= minPrice && price <= maxPrice;
         }).show();
     }
+
+    $(".updatePrice").on("click", function () {
+//        var msg = $("#slider-range").attr("mininput") + " : " + $("#slider-range").attr("maxinput");
+//        alert($("#slider-range").attr("mininput"));
+        let min = $("#slider-range").attr("mininput");
+        let max = $("#slider-range").attr("maxinput");
+        if (min == undefined || max == undefined){
+            min = {{priceRange.min_price}};
+            max = {{ priceRange.max_price }};
+        }
+        window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "";
+    });
 </script>

@@ -13,7 +13,7 @@
                                     <a href="/product_categories/category/{{ categoryLink }}"><span  style="font-size: 15px; color: rgba(0,0,0,.5);">Show All</span></a>
                                 </li>
                                 {{#each subcat}}
-                                    <li><a href="{{ subcategoryLink }}">{{ subcategory }}</a></li>
+                                    <li><a href="/product_categories/subcategory/{{ subcategoryLink }}">{{ subcategory }}</a></li>
                                 {{/each}}
                             </ul>
                         </li>
@@ -26,6 +26,7 @@
                         <input type="text" readonly id="amount"  style="border:0; color:orange; font-weight:normal; font-size:15px;">
                     </p>
                     <div id="slider-range"></div>
+                        <button class="btn btn-warning updatePrice">Update Filter</button>
                 </div>
             </div>
     </div>

@@ -19,6 +19,11 @@ var dbCall = {
             callback(data);
         });
     },
+    selectPriceRange: function (tableName, callback) {
+        orm.selectPriceRange(tableName, function (data) {
+            callback(data);
+        });
+    },
     findItem: function (tableName, searchQuery, callback) {
         orm.findItem(tableName, searchQuery, function (data) {
             callback(data);
@@ -26,6 +31,11 @@ var dbCall = {
     },
     findCategory: function (tableName, categorySearch, callback) {
         orm.findCategory(tableName, categorySearch, function (data) {
+            callback(data);
+        });
+    },
+    findSubCategory: function (tableName, categorySearch, callback) {
+        orm.findSubCategory(tableName, categorySearch, function (data) {
             callback(data);
         });
     },

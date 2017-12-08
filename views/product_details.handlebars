@@ -120,6 +120,8 @@ Product Card Styles
                             {{!-- Back to products categories button --}}
                             {{#if searchQuery }}
                                 <a href="/product_categories/search/{{searchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                            {{ else if subCategorySearchQuery }}
+                                <a href="/product_categories/subcategory/{{subCategorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
                             {{ else if categorySearchQuery }}
                                 <a href="/product_categories/category/{{categorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
                             {{else}}

@@ -3,6 +3,8 @@
         <h4><b>Results for</b> {{ searchQuery }}</h4>
     {{else if categorySearchQuery}}
         <h4>{{ categorySearchQuery }}</h4>
+    {{else if subCategorySearchQuery}}
+        <h4>{{ subCategorySearchQuery }}</h4>
     {{/if}}
     <div class="row">
     {{#if itemSearch}}
@@ -15,7 +17,7 @@
                         </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
+                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ retailprice }}</b></p>
                         </div>
                     </center>
                 </div>
@@ -31,7 +33,23 @@
                         </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
+                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ retailprice }}</b></p>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        {{/each}}
+    {{else if subCategorySearchQuery}}
+        {{#each product}}
+            <div class="col-sm-3" style="margin-top:30px;">
+                <div class="thumbnail"  style="">
+                    <center>
+                        <a  href="/product_details?id={{ id }}&subcategory={{ ../subCategorySearchQuery }}">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&subcategory={{ ../subCategorySearchQuery }}">
+                        </a>
+                        <fieldset style="font-size: 12px;">{{ name }}</fieldset>
+                        <div class="pull-center">
+                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ retailprice }}</b></p>
                         </div>
                     </center>
                 </div>
@@ -49,7 +67,7 @@
                         </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
-                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
+                            <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ retailprice }}</b></p>
                         </div>
                     </center>
                 </div>
