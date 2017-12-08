@@ -362,6 +362,14 @@
             min = {{priceRange.min_price}};
             max = {{ priceRange.max_price }};
         }
-        window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "";
+        {{#if itemSearch}}
+            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&search={{ itemSearch }}";
+        {{else if categorySearchQuery}}
+            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&category={{ categorySearchQuery }}";
+        {{else if subCategorySearchQuery}}
+            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&subcategory={{ subCategorySearchQuery }}";
+        {{else}}
+            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "";
+        {{/if}}
     });
 </script>
