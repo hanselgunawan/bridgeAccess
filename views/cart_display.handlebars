@@ -1,4 +1,463 @@
-<div class="container" style="margin-top:100px">
+<style type="text/css">
+    p {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    h4 {
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    h5 {
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    /*TABLE CSS*/
+    .table>tbody>tr>td, .table>tfoot>tr>td{
+        vertical-align: middle;
+    }
+
+    /*SECTIONS CSS*/
+
+    .panel-group {
+      padding-top: 50px;
+    }
+    .panel-default {
+      border-radius: 0;
+      border: none;
+      background: none;
+      margin-bottom: 0;
+      padding-bottom: 14px;
+    }
+    .panel-default > .panel-heading {
+      border: none;
+      background: none;
+      padding: 0;
+    }
+    .panel-default > .panel-heading + .panel-collapse .panel-body {
+      border: none;
+      padding: 0 0 0 32px;
+    }
+    .panel-default h5 {
+      font-family: 'Josefin Sans', sans-serif;
+      padding: 0;
+      margin: 0 0 5px;
+    }
+    .panel-group .panel+.panel {
+      margin-top: 15px;
+    }
+    .panel-default .accordion-toggle:before {
+      content: "";
+      width: 21px;
+      height: 21px;
+      display: inline-block;
+      background: orange url(http://keenthemes.com/assets/bootsnipp/toggle-icons.png) no-repeat 6px 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+      position: relative;
+      top: 4px;
+    }
+    .panel-default .collapsed:before {
+      background: #495764 url(http://keenthemes.com/assets/bootsnipp/toggle-icons.png) no-repeat 6px -148px;
+    }
+    .panel-default .panel-title:hover .collapsed:before {
+      background-color: orange;
+    }
+    .panel-default .accordion-toggle,
+    .panel-default .accordion-toggle:focus,
+    .panel-default .accordion-toggle:hover,
+    .panel-default .accordion-toggle:active {
+      color: #000;
+      text-decoration: none;
+    }
+    .panel-default .collapsed {
+      color: #5f6f7e;
+    }
+
+    /*Addresses CSS*/
+    .form-control {
+        width: 100%;
+    }
+
+    /*Media Query*/
+    @media screen and (max-width: 600px) {
+        table#cart tbody td .form-control{
+            width:20%;
+            display: inline !important;
+        }
+        .actions .btn{
+            width:36%;
+            margin:1.5em 0;
+        }
+        
+        .actions .btn-info{
+            float:left;
+        }
+        .actions .btn-danger{
+            float:right;
+        }
+
+        table#cart thead { display: none; }
+        table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+        table#cart tbody tr td:first-child { background: #333; color: #fff; }
+        table#cart tbody td:before {
+            content: attr(data-th); font-weight: bold;
+            display: inline-block; width: 8rem;
+        }
+        
+        table#cart tfoot td{display:block; }
+        table#cart tfoot td .btn{display:block;} 
+    }
+
+
+</style>
+
+
+<section class="content-section-a" style="background-color: #FFF; margin-top: 90px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table id="cart" class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th style="width:60%; font-size:18px;">Shopping Cart</th>
+                            <th style="width:10%; font-weight:normal; font-size:15px;"></th>
+                            <th style="width:8%; font-weight:normal; font-size:15px;">Quantity</th>
+                            <th style="width:22%; font-weight:normal; font-size:15px;" class="text-center">Price</th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="https://img.goods.ph/G1/M00/05/B4/wKgAAlmgKoeAUJP6AAN6WCqSCVs428_200x200.jpg" alt="..." class="img-responsive"/></div>
+                                    <div class="col-sm-10">
+                                        <h4 class="nomargin">Kingmax Flashdrive</h4>
+                                        <p>Kingmax Flashdrive 16GB PD-71 is a USB 2.0 that is enough for your transfer of photos, mp3s and video files from pc to pc. Order online now at Goods.ph!</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th=" "></td>
+                            <td data-th="Quantity">
+                                <input type="number" class="form-control text-center" value="1">
+                            </td>
+                            <td data-th="Price" class="text-center">₱ 500.00</td>
+                            <td class="actions" data-th="">
+                                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                            <td colspan="2" class="hidden-xs"></td>
+                            <td class="hidden-xs text-center"><strong>Total ₱ 500.00</strong></td>
+                            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-20px;">
+            <div class="col-md-9"></div>
+            <div class="col-md-3 text-right">
+                <input type="radio" name="agree" id="toggle" class="mr-1" style="font-size:12px;" /> <span class="mr-2" style="font-size:12px;">I agree with the terms and conditions</span>
+            </div>
+        </div>
+
+        {{!-- SHIPPING ADDRESS --}}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-group" id="buyerDetails">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#buyerDetails" href="#shippingAddress">Shipping Address</a>
+                        </h5>
+                      </div>
+                      <div id="shippingAddress" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="row table-bordered">
+                                    {{!-- New Address --}}
+                                    <div class="col-md-6 mt-4 mb-3">
+                                        <h5>New Address</h5>
+                                        <hr>
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <!-- full-name input-->
+                                                <div class="control-group">
+                                                    <label class="control-label">Full Name</label>
+                                                    <div class="controls">
+                                                        <input id="full-name" name="full-name" type="text" placeholder="full name"
+                                                        class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- address-line1 input-->
+                                                <div class="control-group">
+                                                    <label class="control-label">Address Line 1</label>
+                                                    <div class="controls">
+                                                        <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
+                                                        class="form-control">
+                                                        <p class="help-block">Street address, P.O. box, company name, c/o</p>
+                                                    </div>
+                                                </div>
+                                                <!-- address-line2 input-->
+                                                <div class="control-group">
+                                                    <label class="control-label">Address Line 2</label>
+                                                    <div class="controls">
+                                                        <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
+                                                        class="form-control">
+                                                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                                                    </div>
+                                                </div>
+                                                <!-- city input-->
+                                                <div class="control-group">
+                                                    <label class="control-label">City / Province</label>
+                                                    <div class="controls">
+                                                        <input id="city" name="city" type="text" placeholder="city / province" class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- postal-code input-->
+                                                <div class="control-group">
+                                                    <label class="control-label">Zip / Postal Code</label>
+                                                    <div class="controls">
+                                                        <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
+                                                        class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                        <button class="btn btn-warning" type="submit" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);" href="shipping_address">Use This Address</a></button>
+                                    </div>
+                                    
+                                    {{!-- Saved Addresses --}}
+                                    <div class="col-md-6 mt-4">
+                                        <h5>My Addresses</h5>
+                                        <hr>
+                                        <ul class="navbar-nav" style="padding-bottom: 8px">
+                                            <li class="nav-item">
+                                                <label>
+                                                    <input type="radio" class="radio mr-2" value="1" name="savedAddresses[1][]"/>
+                                                        <b>Andre Gunawan</b>
+                                                        333 GREENBRIAR AVE, LOS ANGELES, CA 91172
+                                                </label>
+                                            </li>
+                                            <li class="nav-item">
+                                                <label>
+                                                    <input type="radio" class="radio mr-2" value="1" name="savedAddresses[1][]"/>
+                                                        <b>Andre Gunawan</b>
+                                                        1212 WESTERN AVE, TORRANCE, CA 93222
+                                                </label>
+                                            </li>
+                                            <li class="nav-item">
+                                                <label>
+                                                    <input type="radio" class="radio mr-2" value="1" name="savedAddresses[1][]"/>
+                                                        <b>Andre Gunawan</b>
+                                                        223 3ST APT 222, SOLVANG, CA 93463
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <button class="btn btn-warning" type="submit" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);" href="shipping_address2">Use This Address</a></button>
+                                    </div>
+                                </div>
+                                <p>Delivery Information: 3-7 Business days once in transit and free delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- CO-SIGNER FORM --}}
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title">
+                          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#buyerDetails" href="#buyerDetails_2">Co-Signer</a>
+                        </h5>
+                        <p style="font-size: 12px;">If your total purchase more than 2,000Php, you will need 2 co-signers.<br/> 
+                        Please download the Co-signer's Agreement form <a href="http://bridgeloan:8080/assets/docs/CoSign.pdf" download="" target="_blank">here</a> and fill the form below.</p>
+                      </div>
+                      <div id="buyerDetails_2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="row table-bordered">
+                                <div class="col-md-6 mt-4 mb-3">
+                                        <h5>Co-Signer 1</h5>
+                                        <hr>
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <!-- first-name input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span>First Name</label>
+                                                    <div class="controls">
+                                                        <input id="fname1" name="fname1" type="text" placeholder="first name"
+                                                        class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- last-name input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span>Last Name</label>
+                                                    <div class="controls">
+                                                        <input id="lname1" name="lname1" type="text" placeholder="last name"
+                                                        class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- contact input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
+                                                    <div class="controls">
+                                                        <input id="contact1" name="contact1" type="text" placeholder="address line 1"
+                                                        class="form-control contact1">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- company input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span> Company:</label>
+                                                    <div class="controls">
+                                                        <select name="company1" id="company1" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value=""></option>
+                                                        </select>
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- email input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span> Email:</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="email1" class="form-control" name="email1">
+                                                        <span id="email-txt1"></span>
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-6 mt-4 mb-3">
+                                        <h5>Co-Signer 2</h5>
+                                        <hr>
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <!-- first-name input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span>First Name</label>
+                                                    <div class="controls">
+                                                        <input id="fname2" name="fname2" type="text" placeholder="first name"
+                                                        class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- last-name input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span>Last Name</label>
+                                                    <div class="controls">
+                                                        <input id="lname2" name="lname2" type="text" placeholder="last name"
+                                                        class="form-control">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- contact input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
+                                                    <div class="controls">
+                                                        <input id="contact2" name="contact2" type="text" placeholder="phone number"
+                                                        class="form-control contact1">
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- company input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span> Company:</label>
+                                                    <div class="controls">
+                                                        <select name="company2" id="company2" class="form-control">
+                                                            <option value="">Select</option>
+                                                            <option value=""></option>
+                                                        </select>
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- email input-->
+                                                <div class="control-group">
+                                                    <label class="control-label"><span style="color:red";>*</span> Email:</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="email2" class="form-control" name="email2">
+                                                        <span id="email-txt2"></span>
+                                                        <p class="help-block"></p>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="row table-bordered mt-2">
+                                    <div class="col-md-12 img-upload mt-3 mb-3">
+                                        <label>Upload Photo:</label><small> click browse to upload your cosign form here, before you can checkout</small>
+
+                                        <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-secondary btn-file">
+                                        Browse… <input type="file" id="picture" name="picture">
+                                        </span>
+                                    </span>
+                                        <input type="text" class="form-control" style="width:17%" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+            {{!-- REPAYMENT SCHEDULE --}}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h5>Repayment Schedule</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Payment Date</th>
+                            <th>Payment</th>
+                            <th>Principal</th>
+                            <th>2% interest</th>
+                            <th>Balance</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Payment Date</td>
+                            <td>Payment Amount</td>
+                            <td>Breakdown</td>
+                            <td>Interest Amount</td>
+                            <td>Balance</td>
+                        </tr>
+
+                        <tr>
+                            <td>DATE APPROVE</td>
+                            <td>PERCENT PRINCIPAL</td>
+                            <td>PRINCIPAL</td>
+                            <td>MICRO PERCENT</td>
+                            <td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+{{!-- OLD CART --}}
+{{!-- <div class="container" style="margin-top:100px">
     <section class="content-section-a">
         <div class="row">
             <div class="col-md-12">
@@ -219,8 +678,7 @@
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col text-center">
-                                                            <input checked="checked" disabled type="checkbox" name="agree" id="toggle" style="color:#54bf53;"/> Agree with the terms and conditions
-                                                            <input type="checkbox" name="agree" id="toggle" /> Agree with the terms and conditions
+                                                            <input type="radio" name="agree" id="toggle" /> Agree with the terms and conditions
                                                         </div>
                                                     </div>
                                                 </div>
@@ -318,89 +776,125 @@
                                                         <label>Upload Photo:</label><small> click browse to upload your cosign form here, then you can checkout</small>
 
                                                         <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-secondary btn-file">
-                                Browse… <input type="file" id="picture" name="picture">
-                                </span>
-                            </span>
-                                                            <input type="text" class="form-control" style="width:17%" readonly>
-                                                        </div>
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-secondary btn-file">
+                                                        Browse… <input type="file" id="picture" name="picture">
+                                                        </span>
+                                                    </span>
+                                                        <input type="text" class="form-control" style="width:17%" readonly>
                                                     </div>
-                                                    <br>
                                                 </div>
-                                                <br>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <br>
                                 </div>
+                                <br>
                             </div>
                         </div>
-                    </section>
-                    <br><br><br>
+                    </div>
                 </div>
-                <script type="text/javascript">
-                    var base_url = window.location.origin+"/";
-                    var sum = $('#sum').val();
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+</div> --}}
 
-                    $(".qty_drop").on('change', function (){ //change event for select
-                        $.ajax({ //ajax call
-                            type: "POST", //method == POST
-                            url: base_url+'product/change_quantity', //url to be called
-                            data: { 'qty' :  $(this).val(), 'id' : $(this).siblings("input").val() }, //data to be send
-                            dataType:'JSON',
-                            success:function(data){
-                                window.location.reload();
-                                //$( "#reload" ).load( base_url+"dashboard/view_cart #reload" );
-                            }
-                        });
-                    });
+<script type="text/javascript">
+    var base_url = window.location.origin+"/";
+    var sum = $('#sum').val();
 
-                    $('.del_item').click(function() {
-                        if (confirm('Are you sure you want to delete？')) {
-                            var item_id = $(this).val();
-                            $.ajax({
-                                url: base_url+'product/delete_item',
-                                type: 'POST',
-                                data: {'id':item_id},
-                                dataType:'JSON',
-                                success:function(data){
-                                    window.location.reload();
-                                }
-                            });
-                        }
-                    });
+    $(".qty_drop").on('change', function (){ //change event for select
+        $.ajax({ //ajax call
+            type: "POST", //method == POST
+            url: base_url+'product/change_quantity', //url to be called
+            data: { 'qty' :  $(this).val(), 'id' : $(this).siblings("input").val() }, //data to be send
+            dataType:'JSON',
+            success:function(data){
+                window.location.reload();
+                //$( "#reload" ).load( base_url+"dashboard/view_cart #reload" );
+            }
+        });
+    });
 
-                    $(document).on('change', '.btn-file :file', function() {
-                        var input = $(this),
-                                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                        input.trigger('fileselect', [label]);
-                    });
+    $('.del_item').click(function() {
+        if (confirm('Are you sure you want to delete？')) {
+            var item_id = $(this).val();
+            $.ajax({
+                url: base_url+'product/delete_item',
+                type: 'POST',
+                data: {'id':item_id},
+                dataType:'JSON',
+                success:function(data){
+                    window.location.reload();
+                }
+            });
+        }
+    });
 
-                    $('.btn-file :file').on('fileselect', function(event, label) {
+    $(document).on('change', '.btn-file :file', function() {
+        var input = $(this),
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [label]);
+    });
 
-                        var input = $(this).parents('.img-upload').find(':text'),
-                                log = label;
+    $('.btn-file :file').on('fileselect', function(event, label) {
 
-                        if( input.length ) {
-                            input.val(log);
-                        } else {
+        var input = $(this).parents('.img-upload').find(':text'),
+                log = label;
 
-                        }
-                    });
+        if( input.length ) {
+            input.val(log);
+        } else {
 
-                    if(sum <= 2000){
-                        $('#loan_view').attr('disabled', true);
-                        $('#toggle1').click(function () {
-                            //check if checkbox is checked
-                            if ($(this).is(':checked')) {
-                                $('#loan_view').removeAttr('disabled'); //enable input
-                            } else {
-                                $('#loan_view').attr('disabled', true); //disable input
-                                alert('You must agree with the terms and conditions');
-                            }
-                        });
-                    }else{
-                        $('#loan_view').removeAttr('disabled');
-                    }
+        }
+    });
 
-                </script>
+    if(sum <= 2000){
+        $('#loan_view').attr('disabled', true);
+        $('#toggle1').click(function () {
+            //check if radio is checked
+            if ($(this).is(':checked')) {
+                $('#loan_view').removeAttr('disabled'); //enable input
+            } else {
+                $('#loan_view').attr('disabled', true); //disable input
+                alert('You must agree with the terms and conditions');
+            }
+        });
+    }else{
+        $('#loan_view').removeAttr('disabled');
+    }
+
+    // NEW SCRIPT
+
+    $("input:radio").on('click', function() {
+      // in the handler, 'this' refers to the box clicked on
+      var $box = $(this);
+      if ($box.is(":checked")) {
+        // the name of the box is retrieved using the .attr() method
+        // as it is assumed and expected to be immutable
+        var group = "input:radio[name='" + $box.attr("name") + "']";
+        // the checked state of the group/box on the other hand will change
+        // and the current value is retrieved using .prop() method
+        $(group).prop("checked", false);
+        $box.prop("checked", true);
+      } else {
+        $box.prop("checked", false);
+      }
+    });
+
+    $("input[type='radio']").click(function()
+    {
+      var previousValue = $(this).attr('previousValue');
+      var name = $(this).attr('name');
+
+      if (previousValue == 'checked')
+      {
+        $(this).removeAttr('checked');
+        $(this).attr('previousValue', false);
+      }
+      else
+      {
+        $("input[name="+name+"]:radio").attr('previousValue', false);
+        $(this).attr('previousValue', 'checked');
+      }
+    });
+
+</script>
