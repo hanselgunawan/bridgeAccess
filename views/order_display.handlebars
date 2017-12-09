@@ -112,7 +112,6 @@
 
 </style>
 
-
 <section class="content-section-a" style="background-color: #FFF; margin-top: 90px;">
     <div class="container-fluid">
 
@@ -122,11 +121,35 @@
                 <div class="panel panel-default">
                     <h5>Shipping Address</h5>
                     <p style="font-size: 12px;">Delivery Information: 3-7 Business days once in transit.</p>
-                    <div id="shippingAddress" class="">
+                    <form id="shippingAddress" class="">
                         <div class="panel-body">
                             <div class="row table-bordered">
-                                {{!-- New Address --}}
+                                {{!-- Saved Addresses --}}
                                 <div class="col-md-6 mt-4 mb-3">
+                                    <h5>My Addresses</h5>
+                                    <hr>
+                                    <ul class="navbar-nav" style="padding-bottom: 8px">
+                                        <li class="nav-item">
+                                            <label>
+                                                <input type="radio" name="savedAddress" class="mr-1 addressRadio" style="font-size:12px;" required> <span class="mr-2" style="font-size:13px;"><b>ANDRE GUNAWAN</b><br> 333 GREENBRIAR AVE, LOS ANGELES, CA 91172</span>
+                                            </label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <label>
+                                                <input type="radio" name="savedAddress" class="mr-1 addressRadio" style="font-size:12px;" required> <span class="mr-2" style="font-size:13px;"><b>ANDRE GUNAWAN</b><br> 1212 WESTERN AVE, TORRANCE, CA 93222</span>
+                                            </label>
+                                        </li>
+                                        <li class="nav-item">
+                                            <label>
+                                                <input type="radio" name="savedAddress" class="mr-1 addressRadio" style="font-size:12px;" required> <span class="mr-2" style="font-size:13px;"><b>ANDRE GUNAWAN</b><br> 223 3ST APT 222, SOLVANG, CA 93463</span>
+                                            </label>
+                                        </li>
+                                            <button class="btn btn-warning addressRadio" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);">Use New Address</a></button>
+                                    </ul>
+                                </div>
+
+                                {{!-- New Address --}}
+                                <div class="col-md-6 mt-4">
                                     <h5>New Address</h5>
                                     <hr>
                                     <form class="form-horizontal">
@@ -136,7 +159,7 @@
                                                 <label class="control-label">Full Name</label>
                                                 <div class="controls">
                                                     <input id="full-name" name="full-name" type="text" placeholder="full name"
-                                                    class="form-control">
+                                                    class="form-control newAddress" disabled>
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
@@ -145,7 +168,7 @@
                                                 <label class="control-label">Address Line 1</label>
                                                 <div class="controls">
                                                     <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
-                                                    class="form-control">
+                                                    class="form-control newAddress" disabled>
                                                     <p class="help-block">Street address, P.O. box, company name, c/o</p>
                                                 </div>
                                             </div>
@@ -154,7 +177,7 @@
                                                 <label class="control-label">Address Line 2</label>
                                                 <div class="controls">
                                                     <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
-                                                    class="form-control">
+                                                    class="form-control newAddress" disabled>
                                                     <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
                                                 </div>
                                             </div>
@@ -162,7 +185,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">City / Province</label>
                                                 <div class="controls">
-                                                    <input id="city" name="city" type="text" placeholder="city / province" class="form-control">
+                                                    <input id="city" name="city" type="text" placeholder="city / province" class="form-control newAddress" disabled>
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
@@ -171,182 +194,154 @@
                                                 <label class="control-label">Zip / Postal Code</label>
                                                 <div class="controls">
                                                     <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
-                                                    class="form-control">
+                                                    class="form-control newAddress" disabled>
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </form>
-                                        {{!-- <button class="btn btn-warning" type="submit" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);" href="shipping_address">Use This Address</a></button> --}}
-                                    </div>
-                                
-                                    {{!-- Saved Addresses --}}
-                                    <div class="col-md-6 mt-4">
-                                        <h5>My Addresses</h5>
-                                        <hr>
-                                        <ul class="navbar-nav" style="padding-bottom: 8px">
-                                            <li class="nav-item">
-                                                <label>
-                                                    <input type="radio" name="savedAddress1" id="toggle" class="mr-1" style="font-size:12px;" /> <span class="mr-2" style="font-size:13px;"><b>ANDRE GUNAWAN</b><br> 333 GREENBRIAR AVE, LOS ANGELES, CA 91172</span>
-                                                </label>
-                                            </li>
-                                            <li class="nav-item">
-                                                <label>
-                                                    <input type="radio" name="savedAddress1" id="toggle" class="mr-1" style="font-size:12px;" /> <span class="mr-2" style="font-size:13px;"><b>ANDRE GUNAWAN</b><br> 1212 WESTERN AVE, TORRANCE, CA 93222</span>
-                                                </label>
-                                            </li>
-                                            <li class="nav-item">
-                                                <label>
-                                                    <input type="radio" name="savedAddress1" id="toggle" class="mr-1" style="font-size:12px;" /> <span class="mr-2" style="font-size:13px;"><b>ANDRE GUNAWAN</b><br> 223 3ST APT 222, SOLVANG, CA 93463</span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                   {{!--      <button class="btn btn-warning" type="submit" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);" href="shipping_address2">Use This Address</a></button> --}}
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+                </div>
 
-                    {{!-- CO-SIGNER FORM --}}
-                    <div class="panel panel-default">
-
-                        <h5>Co-Signer</h5>
-                        <p style="font-size: 12px;">If your total purchase more than 2,000Php, you will need 2 co-signers.<br/> 
-                        Please download the Co-signer's Agreement form <a href="http://bridgeloan:8080/assets/docs/CoSign.pdf" download="" target="_blank">here</a> and fill the form below.</p>
-                      <div id="buyerDetails_2" >
+                {{!-- CO-SIGNER FORM --}}
+                <div class="panel panel-default">
+                    <h5>Co-Signer</h5>
+                    <p style="font-size: 12px;">If your total purchase more than 2,000Php, you will need 2 co-signers.<br/> 
+                    Please download the Co-signer's Agreement form <a href="http://bridgeloan:8080/assets/docs/CoSign.pdf" download="" target="_blank">here</a> and fill the form below.</p>
+                    <form id="buyerDetails">
                         <div class="panel-body">
                             <div class="row table-bordered">
                                 <div class="col-md-6 mt-4 mb-3">
-                                        <h5>Co-Signer 1</h5>
-                                        <hr>
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <!-- first-name input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span>First Name</label>
-                                                    <div class="controls">
-                                                        <input id="fname1" name="fname1" type="text" placeholder="first name"
-                                                        class="form-control">
-                                                        <p class="help-block"></p>
-                                                    </div>
+                                    <h5>Co-Signer 1</h5>
+                                    <hr>
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <!-- first-name input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span>First Name</label>
+                                                <div class="controls">
+                                                    <input id="fname1" name="fname1" type="text" placeholder="first name"
+                                                    class="form-control loan_view" required>
+                                                    <p class="help-block"></p>
                                                 </div>
-                                                <!-- last-name input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span>Last Name</label>
-                                                    <div class="controls">
-                                                        <input id="lname1" name="lname1" type="text" placeholder="last name"
-                                                        class="form-control">
-                                                        <p class="help-block"></p>
-                                                    </div>
+                                            </div>
+                                            <!-- last-name input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span>Last Name</label>
+                                                <div class="controls">
+                                                    <input id="lname1" name="lname1" type="text" placeholder="last name"
+                                                    class="form-control loan_view">
+                                                    <p class="help-block"></p>
                                                 </div>
-                                                <!-- contact input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
-                                                    <div class="controls">
-                                                        <input id="contact1" name="contact1" type="text" placeholder="address line 1"
-                                                        class="form-control contact1">
-                                                        <p class="help-block"></p>
-                                                    </div>
+                                            </div>
+                                            <!-- contact input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
+                                                <div class="controls">
+                                                    <input id="contact1" name="contact1" type="text" placeholder="address line 1"
+                                                    class="form-control loan_view">
+                                                    <p class="help-block"></p>
                                                 </div>
-                                                <!-- company input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span> Company:</label>
-                                                    <div class="controls">
-                                                        <select name="company1" id="company1" class="form-control">
-                                                            <option value="">Select</option>
-                                                            <option value=""></option>
-                                                        </select>
-                                                        <p class="help-block"></p>
-                                                    </div>
+                                            </div>
+                                            <!-- company input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span> Company:</label>
+                                                <div class="controls">
+                                                    <select name="company1" id="company1" class="form-control loan_view">
+                                                        <option value="">Select</option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                    <p class="help-block"></p>
                                                 </div>
-                                                <!-- email input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span> Email:</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="email1" class="form-control" name="email1">
-                                                        <span id="email-txt1"></span>
-                                                        <p class="help-block"></p>
-                                                    </div>
+                                            </div>
+                                            <!-- email input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span> Email:</label>
+                                                <div class="controls">
+                                                    <input type="text" id="email1" class="form-control loan_view" name="email1">
+                                                    <span id="email-txt1"></span>
+                                                    <p class="help-block"></p>
                                                 </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-
-                                    <div class="col-md-6 mt-4 mb-3">
-                                        <h5>Co-Signer 2</h5>
-                                        <hr>
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <!-- first-name input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span>First Name</label>
-                                                    <div class="controls">
-                                                        <input id="fname2" name="fname2" type="text" placeholder="first name"
-                                                        class="form-control" required>
-                                                        <p class="help-block"></p>
-                                                         <button type="submit"></button>
-                                                    </div>
-                                                </div>
-                                                <!-- last-name input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span>Last Name</label>
-                                                    <div class="controls">
-                                                        <input id="lname2" name="lname2" type="text" placeholder="last name"
-                                                        class="form-control">
-                                                        <p class="help-block"></p>
-                                                    </div>
-                                                </div>
-                                                <!-- contact input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
-                                                    <div class="controls">
-                                                        <input id="contact2" name="contact2" type="text" placeholder="phone number"
-                                                        class="form-control contact1">
-                                                        <p class="help-block"></p>
-                                                    </div>
-                                                </div>
-                                                <!-- company input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span> Company:</label>
-                                                    <div class="controls">
-                                                        <select name="company2" id="company2" class="form-control">
-                                                            <option value="">Select</option>
-                                                            <option value=""></option>
-                                                        </select>
-                                                        <p class="help-block"></p>
-                                                    </div>
-                                                </div>
-                                                <!-- email input-->
-                                                <div class="control-group">
-                                                    <label class="control-label"><span style="color:red";>*</span> Email:</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="email2" class="form-control" name="email2">
-                                                        <span id="email-txt2"></span>
-                                                        <p class="help-block"></p>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
                                 </div>
 
-                                <div class="row table-bordered mt-2">
-                                    <div class="col-md-12 img-upload mt-3 mb-3">
-                                        <label>Upload Photo:</label><small> click browse to upload your cosign form here, before you can checkout</small>
+                                <div class="col-md-6 mt-4 mb-3">
+                                    <h5>Co-Signer 2</h5>
+                                    <hr>
+                                    <form id="coSigner" class="form-horizontal">
+                                        <fieldset>
+                                            <!-- first-name input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span>First Name</label>
+                                                <div class="controls">
+                                                    <input id="fname2" name="fname2" type="text" placeholder="first name"
+                                                    class="form-control loan_view">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                            <!-- last-name input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span>Last Name</label>
+                                                <div class="controls">
+                                                    <input id="lname2" name="lname2" type="text" placeholder="last name"
+                                                    class="form-control loan_view">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                            <!-- contact input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
+                                                <div class="controls">
+                                                    <input id="contact2" name="contact2" type="text" placeholder="phone number"
+                                                    class="form-control loan_view">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                            <!-- company input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span> Company:</label>
+                                                <div class="controls">
+                                                    <select name="company2" id="company2" class="form-control loan_view">
+                                                        <option value="">Select</option>
+                                                        <option value=""></option>
+                                                    </select>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                            <!-- email input-->
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red";>*</span> Email:</label>
+                                                <div class="controls">
+                                                    <input type="text" id="email2" class="form-control loan_view" name="email2">
+                                                    <span id="email-txt2"></span>
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
 
-                                        <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <span class="btn btn-secondary btn-file">
-                                        Browse… <input type="file" id="picture" name="picture">
+                            <div class="row table-bordered mt-2">
+                                <div class="col-md-12 img-upload mt-3 mb-3">
+                                    <label>Upload Photo:</label><small> click browse to upload your cosign form here, before you can checkout</small>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-secondary btn-file">
+                                            Browse… <input type="file" id="picture" name="picture">
+                                            </span>
                                         </span>
-                                    </span>
                                         <input type="text" class="form-control" style="width:17%" readonly>
                                     </div>
                                 </div>
-                            </div>
+                            </div>     
                         </div>
-                    </div>
+                    </form>
                 </div>
             
 
@@ -431,12 +426,15 @@
                                     </div>
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-4 text-right">
+
+            {{!--                   Total Order value                       --}}
+                                        <input name="sum" id="sum" type="hidden" value="500">
                                         ₱ 500.00
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 text-center mt-1">
-                                        <button class="btn btn-warning" type="submit" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);" href="placeOrder">Place your order</a></button>
+                                        <button form="shippingAddress" class="btn btn-warning" style="font-size: 13px; font-weight:bold; color: rgba(0,0,0,.5); height: 35px;"><a style="color: rgba(0,0,0,.5);">Place your order</a></button>
                                         <p class="mt-1" style="font-size: 13px; width:100%">By placing your order, you agree to our <a data-toggle="modal" href="#termsAndConditions">terms and conditions of use.</a></p>
                                     </div>
                                 </div>
@@ -531,13 +529,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
         </div>
     </div>
 </section>
@@ -592,42 +583,66 @@
         }
     });
 
-    if(sum <= 2000){
-        $('#loan_view').attr('disabled', true);
-        $('#toggle1').click(function () {
-            //check if radio is checked
-            if ($(this).is(':checked')) {
-                $('#loan_view').removeAttr('disabled'); //enable input
-            } else {
-                $('#loan_view').attr('disabled', true); //disable input
-                alert('You must agree with the terms and conditions');
-            }
-        });
+// TOTAL ORDER NEED LOAN
+    if(sum <= 1000){
+        $('.loan_view').attr('disabled', true);
     }else{
-        $('#loan_view').removeAttr('disabled');
+        $('.loan_view').removeAttr('disabled');
     }
+
+    $('.addressRadio').click(function () {
+    //check if radio is checked
+        if ($(this).is(':checked')) {
+            $('.newAddress').attr('disabled', true); //disable input new address
+            $('.newAddress').removeAttr('required'); //disable require new address
+            $('.addressRadio').attr('required', true); //enable require radio
+        } else {
+            $('.newAddress').removeAttr('disabled'); //enable input new address
+            $('.newAddress').attr('required', true); //enable require new address
+            $('.addressRadio').prop( 'checked', false );
+            $('.addressRadio').removeAttr('required'); //disable require radio
+        }
+    });
+
+    // $('#placeOrder').click(function () {
+    // //check if radio is checked
+    //     // if ($('.addressRadio').is(':checked') || $('.newAddress')!= " ") {
+    //     //     $('.newAddress').removeAttr('required'); //enable require
+    //     // } else {
+    //         $('.newAddress').attr('required', true); //enable require
+    //     // }
+    // });
+
+    $("#shippingAddress").submit(function( event ) {
+      alert( "Handler for .submit() called." );
+      event.preventDefault();
+    });
+
+    // submitForms = function(){
+    //     document.getElementById("form1").submit();
+    //     document.getElementById("coSigner").submit();
+    //     alert( "Handler for .submit() called." );
+    //     event.preventDefault();
+    // }
 
     // NEW SCRIPT
 
-    $("input:radio").on('click', function()
-    {
-      var previousValue = $(this).attr('previousValue');
-      var name = $(this).attr('name');
+    // $("input:radio").on('click', function()
+    // {
+    //   var previousValue = $(this).attr('previousValue');
+    //   var name = $(this).attr('name');
 
-      if (previousValue == 'checked')
-      {
-        $(this).removeAttr('checked');
-        $(this).attr('previousValue', false);
-      }
-      else
-      {
-        $("input[name="+name+"]:radio").attr('previousValue', false);
-        $(this).attr('previousValue', 'checked');
-      }
-    });
+    //   if (previousValue == 'checked')
+    //   {
+    //     $(this).removeAttr('checked');
+    //     $(this).attr('previousValue', false);
+    //   }
+    //   else
+    //   {
+    //     $("input[name="+name+"]:radio").attr('previousValue', false);
+    //     $(this).attr('previousValue', 'checked');
+    //   }
+    // });
 
-    function Validate(txt) {
-    txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
-    }
 
 </script>
