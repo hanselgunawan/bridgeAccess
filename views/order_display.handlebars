@@ -158,8 +158,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Full Name</label>
                                                 <div class="controls">
-                                                    <input id="full-name" name="full-name" type="text" placeholder="full name"
-                                                    class="form-control newAddress" disabled>
+                                                    <input id="full-name" name="full-name" type="text" class="form-control newAddress" disabled>
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
@@ -167,8 +166,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Address Line 1</label>
                                                 <div class="controls">
-                                                    <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
-                                                    class="form-control newAddress" disabled>
+                                                    <input id="address-line1" name="address-line1" type="text" class="form-control newAddress" disabled>
                                                     <p class="help-block">Street address, P.O. box, company name, c/o</p>
                                                 </div>
                                             </div>
@@ -176,8 +174,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Address Line 2</label>
                                                 <div class="controls">
-                                                    <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
-                                                    class="form-control newAddress" disabled>
+                                                    <input id="address-line2" name="address-line2" type="text" class="form-control newAddress" disabled>
                                                     <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
                                                 </div>
                                             </div>
@@ -185,7 +182,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">City / Province</label>
                                                 <div class="controls">
-                                                    <input id="city" name="city" type="text" placeholder="city / province" class="form-control newAddress" disabled>
+                                                    <input id="city" name="city" type="text" class="form-control newAddress" disabled>
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
@@ -193,8 +190,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Zip / Postal Code</label>
                                                 <div class="controls">
-                                                    <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
-                                                    class="form-control newAddress" disabled>
+                                                    <input id="postal-code" name="postal-code" type="text" class="form-control newAddress" disabled>
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
@@ -222,8 +218,7 @@
                                         <div class="control-group">
                                             <label class="control-label"><span style="color:red";>*</span>First Name</label>
                                             <div class="controls">
-                                                <input id="fname1" name="fname1" type="text" placeholder="first name"
-                                                class="form-control loan_view" required>
+                                                <input id="fname1" name="fname1" type="text" class="form-control loan_view" required>
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -231,8 +226,7 @@
                                         <div class="control-group">
                                             <label class="control-label"><span style="color:red";>*</span>Last Name</label>
                                             <div class="controls">
-                                                <input id="lname1" name="lname1" type="text" placeholder="last name"
-                                                class="form-control loan_view">
+                                                <input id="lname1" name="lname1" type="text" class="form-control loan_view">
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -240,8 +234,7 @@
                                         <div class="control-group">
                                             <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
                                             <div class="controls">
-                                                <input id="contact1" name="contact1" type="text" placeholder="address line 1"
-                                                class="form-control loan_view">
+                                                <input id="contact1" name="contact1" type="text" class="form-control loan_view">
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -276,8 +269,7 @@
                                         <div class="control-group">
                                             <label class="control-label"><span style="color:red";>*</span>First Name</label>
                                             <div class="controls">
-                                                <input id="fname2" name="fname2" type="text" placeholder="first name"
-                                                class="form-control loan_view">
+                                                <input id="fname2" name="fname2" type="text" class="form-control loan_view">
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -285,8 +277,7 @@
                                         <div class="control-group">
                                             <label class="control-label"><span style="color:red";>*</span>Last Name</label>
                                             <div class="controls">
-                                                <input id="lname2" name="lname2" type="text" placeholder="last name"
-                                                class="form-control loan_view">
+                                                <input id="lname2" name="lname2" type="text" class="form-control loan_view">
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -294,8 +285,7 @@
                                         <div class="control-group">
                                             <label class="control-label"><span style="color:red";>*</span> Contact No.:</label>
                                             <div class="controls">
-                                                <input id="contact2" name="contact2" type="text" placeholder="phone number"
-                                                class="form-control loan_view">
+                                                <input id="contact2" name="contact2" type="text" class="form-control loan_view">
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -382,47 +372,57 @@
                 <div class="panel panel-default">
                     <div id="orderSummary">
                         <div class="row table-bordered mt-3" style="position:fixed; width:30%;">
-                            {{!-- New Address --}}
                             <div class="col-md-12 mt-4 mb-2">
                                 <h5>Order Summary</h5>
                                 <hr>
                                 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        Kingmax Flashdrive
-                                        {{!-- <p>Kingmax Flashdrive 16GB PD-71 is a USB 2.0 that is enough for your transfer of photos, mp3s and video files from pc to pc. Order online now at Goods.ph!</p> --}}
-                                    </div>
-                                    <div class="col-sm-2"></div>
-                                    <div class="col-sm-4 text-right">
-                                        ₱ 500.00
-                                    </div>
+                                <div class="row scrolled" style="overflow-y: scroll; height: 200px;">
+                                    <ul class="navbar-nav" style="width:100%;">
+                                        <li>
+                                            <div class="row pl-3 pr-3">
+                                                <div class="col-sm-6"> Kingmax Flashdrive </div>
+                                                <div class="col-sm-2">  &#215; 1</div>
+                                                <div class="col-sm-4 text-right"> ₱ 500.00 </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row pl-3 pr-3">
+                                                <div class="col-sm-6"> Kingmax Flashdrive </div>
+                                                <div class="col-sm-2">  &#215; 1</div>
+                                                <div class="col-sm-4 text-right"> ₱ 500.00 </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row pl-3 pr-3">
+                                                <div class="col-sm-6"> Kingmax Flashdrive </div>
+                                                <div class="col-sm-2">  &#215; 1</div>
+                                                <div class="col-sm-4 text-right"> ₱ 500.00 </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row pl-3 pr-3">
+                                                <div class="col-sm-6"> Kingmax Flashdrive </div>
+                                                <div class="col-sm-2">  &#215; 1</div>
+                                                <div class="col-sm-4 text-right"> ₱ 500.00 </div>
+                                            </div>
+                                        </li>                                     
+                                    </ul>
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        Subtotal
-                                    </div>
+                                    <div class="col-sm-6"> Subtotal </div>
                                     <div class="col-sm-2"></div>
-                                    <div class="col-sm-4 text-right">
-                                        ₱ 500.00
-                                    </div>
+                                    <div class="col-sm-4 text-right"> ₱ 500.00 </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        Delivery
-                                    </div>
+                                    <div class="col-sm-6"> Delivery </div>
                                     <div class="col-sm-2"></div>
-                                    <div class="col-sm-4 text-right">
-                                        ₱ 0.00
-                                    </div>
+                                    <div class="col-sm-4 text-right"> ₱ 0.00 </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        Order total
-                                    </div>
+                                    <div class="col-sm-6"> Order total </div>
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-4 text-right">
-
             {{!--                   Total Order value                       --}}
                                         <input name="sum" id="sum" type="hidden" value="500">
                                         ₱ 500.00
@@ -583,7 +583,7 @@
     });
 
 // TOTAL ORDER NEED LOAN
-    if(sum <= 1000){
+    if(sum <= 1){
         $('.loan_view').attr('disabled', true);
         $('.placeButton').removeAttr('disabled');
     }else{
