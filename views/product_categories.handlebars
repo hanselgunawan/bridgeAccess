@@ -192,6 +192,24 @@
     }
 
 
+    /*PAGINATION*/
+    .pagination>li>a, .pagination>li>span { 
+        border: none;
+        margin: 0 5px;
+        color: black;
+        font-family: 'Josefin Sans', sans-serif;
+        color: rgba(0,0,0,.5);
+    }
+
+    .pagination>li>a:hover { 
+        color: orange !important;
+    }
+
+    .pagination>li>a:active { 
+        color: orange !important;
+    }
+
+
     /* Desktops and laptops ----------- */
     @media only screen  and (min-width : 1224px) {
         .carousel-control-next {
@@ -258,6 +276,22 @@
             {{> display_category}}
             {{> display_search}}
         </div>
+
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">Prev.</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
     </div>
 </section>
 
