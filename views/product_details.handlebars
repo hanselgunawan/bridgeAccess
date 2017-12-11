@@ -119,11 +119,23 @@ Product Card Styles
                             <a href="#" onclick="$(this).closest('form').submit()" class="btn btn-xs btn-add-to-cart mt-2" role="button"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Add to Cart</a>
                             {{!-- Back to products categories button --}}
                             {{#if searchQuery }}
-                                <a href="/product_categories/search/{{searchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{#if minPrice}}
+                                    <a href="/product_categories/filter?min={{minPrice}}&max={{maxPrice}}&search={{searchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{else}}
+                                    <a href="/product_categories/search/{{searchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{/if}}
                             {{ else if subCategorySearchQuery }}
-                                <a href="/product_categories/subcategory/{{subCategorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{#if minPrice}}
+                                    <a href="/product_categories/filter?min={{minPrice}}&max={{maxPrice}}&category={{subCategorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{else}}
+                                    <a href="/product_categories/subcategory/{{subCategorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{/if}}
                             {{ else if categorySearchQuery }}
-                                <a href="/product_categories/category/{{categorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{#if minPrice}}
+                                    <a href="/product_categories/filter?min={{minPrice}}&max={{maxPrice}}&category={{categorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{else}}
+                                    <a href="/product_categories/category/{{categorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
+                                {{/if}}
                             {{else}}
                                 <a href="/product_categories" class="btn btn-secondary mt-2" role="button">Back</a>
                             {{/if}}

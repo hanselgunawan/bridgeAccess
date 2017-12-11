@@ -243,23 +243,6 @@ router.get("/product_categories/filter", function (req, res) {
     });
 });
 
-router.get("/product_details/:id", function (req, res) {
-    bridgeAccessModel.selectProduct("bridge_goodsph_products", req.params.id, function (productData) {
-        var dropdownList = [];
-        for(let i=0; i<productData[0].instock; i++)
-        {
-            dropdownList.push({dropdownValue: i+1});
-        }
-        var obj = {
-            product: productData[0],
-            dropdownArr: dropdownList
-        };
-        console.log(productData[0]);
-        console.log(dropdownList);
-        res.render("product_details", obj);
-    });
-});
-
 router.get("/product_details", function (req, res) {
     bridgeAccessModel.selectProduct("bridge_goodsph_products", req.query.id, function (productData) {
         var dropdownList = [];
@@ -272,6 +255,13 @@ router.get("/product_details", function (req, res) {
             dropdownArr: dropdownList
         };
         var queryUrl = url.parse(req.url).query;
+        console.log("MIN: " + req.query.min);
+        console.log("MAX: " + req.query.max);
+        if(req.query.min || req.query.max)
+        {
+            obj["minPrice"] = req.query.min;
+            obj["maxPrice"] = req.query.max;
+        }
         if(req.query.search !== undefined && req.query.category === undefined && req.query.subcategory === undefined)
         {
             obj["searchQuery"] = req.query.search;
@@ -291,13 +281,25 @@ router.get("/product_details", function (req, res) {
 });
 
 router.get("/success_checkout", function (req, res) {
-    // burgerModel.selectAll("burgers", function (data) {
-    //     var obj = {
-    //         burgers:data
-    //     };
-    // });
     res.render("success_checkout");
 });
+
+// router.get("/product_details/:id", function (req, res) {
+//     bridgeAccessModel.selectProduct("bridge_goodsph_products", req.params.id, function (productData) {
+//         var dropdownList = [];
+//         for(let i=0; i<productData[0].instock; i++)
+//         {
+//             dropdownList.push({dropdownValue: i+1});
+//         }
+//         var obj = {
+//             product: productData[0],
+//             dropdownArr: dropdownList
+//         };
+//         console.log(productData[0]);
+//         console.log(dropdownList);
+//         res.render("product_details", obj);
+//     });
+// });
 
 // router.post("/burger/insert", function (req, res) {
 //     burgerModel.insertOne("burgers", "burgerName", "devouredStatus", "date", req.body.inputted_burger_name, function (data) {
