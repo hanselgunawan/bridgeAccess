@@ -388,20 +388,20 @@
     }
 
     $(".updatePrice").on("click", function () {
-//        var msg = $("#slider-range").attr("mininput") + " : " + $("#slider-range").attr("maxinput");
-//        alert($("#slider-range").attr("mininput"));
-        let min = $("#slider-range").attr("mininput");
-        let max = $("#slider-range").attr("maxinput");
+        var min = $("#slider-range").attr("mininput");
+        var max = $("#slider-range").attr("maxinput");
         if (min == undefined || max == undefined){
             min = {{priceRange.min_price}};
             max = {{ priceRange.max_price }};
         }
         {{#if itemSearch}}
-            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&search={{ itemSearch }}";
+            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&search={{ searchQuery }}";
         {{else if categorySearchQuery}}
-            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&category={{ categorySearchQuery }}";
+            var urlStr = "/product_categories/filter?min="+ min + "&max=" + max + "&category={{ categorySearchLink }}";
+            window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'");
         {{else if subCategorySearchQuery}}
-            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&subcategory={{ subCategorySearchQuery }}";
+            var urlStr = "/product_categories/filter?min="+ min + "&max=" + max + "&subcategory={{ subCategorySearchLink }}";
+            window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'");
         {{else}}
             window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "";
         {{/if}}

@@ -24,6 +24,26 @@ var dbCall = {
             callback(data);
         });
     },
+    selectPriceRangeBySearch: function (tableName, search, callback) {
+        orm.selectPriceRangeBySearch(tableName, search, function (data) {
+            callback(data);
+        });
+    },
+    selectPriceRangeByCategory: function (tableName, category, callback) {
+        orm.selectPriceRangeByCategory(tableName, category, function (data) {
+            callback(data);
+        });
+    },
+    selectPriceRangeBySubcategory: function (tableName, subCategory, callback) {
+        orm.selectPriceRangeBySubcategory(tableName, subCategory, function (data) {
+            callback(data);
+        });
+    },
+    selectPriceRangeByFilter: function (tableName, minPrice, maxPrice, categorySearch, subCategorySearch, searchQuery, callback) {
+        orm.selectPriceRangeByFilter(tableName, minPrice, maxPrice, categorySearch, subCategorySearch, searchQuery, function (data) {
+            callback(data);
+        });
+    },
     findItem: function (tableName, searchQuery, callback) {
         orm.findItem(tableName, searchQuery, function (data) {
             callback(data);
@@ -36,6 +56,11 @@ var dbCall = {
     },
     findSubCategory: function (tableName, categorySearch, callback) {
         orm.findSubCategory(tableName, categorySearch, function (data) {
+            callback(data);
+        });
+    },
+    findByFilter: function (tableName, minPrice, maxPrice, categorySearch, subCategorySearch, searchQuery, callback) {
+        orm.findByFilter(tableName, minPrice, maxPrice, categorySearch, subCategorySearch, searchQuery, function (data) {
             callback(data);
         });
     },

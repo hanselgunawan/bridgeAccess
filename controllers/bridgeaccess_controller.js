@@ -97,7 +97,7 @@ router.get("/product_categories/search/:itemSearch", function (req, res) {
                     catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
                 }
             }
-            bridgeAccessModel.selectPriceRange("bridge_goodsph_products", function (priceRangeData){
+            bridgeAccessModel.selectPriceRangeBySearch("bridge_goodsph_products", req.params.itemSearch, function (priceRangeData){
                 var obj = {
                     itemSearch: searchData,
                     product: searchData,
@@ -113,6 +113,8 @@ router.get("/product_categories/search/:itemSearch", function (req, res) {
 
 router.get("/product_categories/category/:categorySearch", function (req, res) {
     bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
+        var catFilterStr = "";
+        catFilterStr = req.params.categorySearch;
         bridgeAccessModel.findCategory("bridge_goodsph_products", req.params.categorySearch, function (categorySearchData) {
             if(req.params.categorySearch === "")
             {
@@ -127,13 +129,14 @@ router.get("/product_categories/category/:categorySearch", function (req, res) {
                     catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
                 }
             }
-            bridgeAccessModel.selectPriceRange("bridge_goodsph_products", function (priceRangeData){
+            bridgeAccessModel.selectPriceRangeByCategory("bridge_goodsph_products", req.params.categorySearch, function (priceRangeData){
                 var obj = {
                     product: categorySearchData,
                     category:catData,
                     categories: getCategory(catData),
                     categorySearchQuery: req.params.categorySearch.replace("\\\\", ""),
-                    priceRange: priceRangeData[0]
+                    priceRange: priceRangeData[0],
+                    categorySearchLink: catFilterStr
                 };
                 res.render("product_categories", obj);
             });
@@ -143,6 +146,8 @@ router.get("/product_categories/category/:categorySearch", function (req, res) {
 
 router.get("/product_categories/subcategory/:subCategorySearch", function (req, res) {
     bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
+        var subCatFilterStr = "";
+        subCatFilterStr = req.params.subCategorySearch;
         bridgeAccessModel.findSubCategory("bridge_goodsph_products", req.params.subCategorySearch, function (categorySearchData) {
             if(req.params.subCategorySearch === "")
             {
@@ -157,14 +162,81 @@ router.get("/product_categories/subcategory/:subCategorySearch", function (req, 
                     catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
                 }
             }
-            bridgeAccessModel.selectPriceRange("bridge_goodsph_products", function (priceRangeData){
+            bridgeAccessModel.selectPriceRangeBySubcategory("bridge_goodsph_products", req.params.subCategorySearch, function (priceRangeData){
                 var obj = {
                     product: categorySearchData,
                     category:catData,
                     categories: getCategory(catData),
                     subCategorySearchQuery: req.params.subCategorySearch.replace("\\\\", ""),
+                    priceRange: priceRangeData[0],
+                    subCategorySearchLink: subCatFilterStr
+                };
+                res.render("product_categories", obj);
+            });
+        });
+    });
+});
+
+router.get("/product_categories/filter", function (req, res) {
+    bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
+        var queryUrl = url.parse(req.url).query;
+        var catFilterStr = "", subCatFilterStr = "", searchStr = "";
+        if(req.query.search !== undefined && req.query.category === undefined && req.query.subcategory === undefined)
+        {
+            searchStr = queryUrl.substring(queryUrl.lastIndexOf("=")+1, queryUrl.length);
+        }
+        else if(req.query.search === undefined && req.query.category !== undefined && req.query.subcategory === undefined)
+        {
+            catFilterStr = queryUrl.substring(queryUrl.lastIndexOf("=")+1, queryUrl.length);
+
+        }
+        else if(req.query.search === undefined && req.query.category === undefined && req.query.subcategory !== undefined)
+        {
+            subCatFilterStr = queryUrl.substring(queryUrl.lastIndexOf("=")+1, queryUrl.length);
+        }
+        bridgeAccessModel.findByFilter("bridge_goodsph_products", req.query.min, req.query.max, catFilterStr.replace(";", "").replace(/%20/g, " ").replace(/%27/g,"\\\\\'"),
+            subCatFilterStr.replace(";", "").replace(/%20/g, " ").replace(/%5C/g,"\\").replace(/%27/g,"\\'"), searchStr, function (filterData) {
+            if(req.params.subCategorySearch === "")
+            {
+                res.redirect("/product_categories");
+            }
+            else
+            {
+                console.log(catData);
+                var catFilter = [];
+                for(let i=0;i<catData.length;i++)
+                {
+                    catFilter.push({"categoryid1": catData[i].categoryid1.replace('\\', ""), categoryLink: catData[i].categoryid1.replace('\\', "%5C%5C")});
+                }
+            }
+            // console.log(catFilterStr.replace(";", "").replace(/%20/g, " ").replace(/%27/g,"\\\\\'"));
+            bridgeAccessModel.selectPriceRangeByFilter("bridge_goodsph_products", req.query.min, req.query.max, catFilterStr.replace(";", "").replace(/%20/g, " ").replace(/%27/g,"\\\\\'"),
+                subCatFilterStr.replace(";", "").replace(/%20/g, " ").replace(/%5C/g,"\\").replace(/%27/g,"\\'"), searchStr, function (priceRangeData) {
+                var obj = {
+                    product: filterData,
+                    category:catData,
+                    categories: getCategory(catData),
+                    minPrice: req.query.min,
+                    maxPrice: req.query.max,
                     priceRange: priceRangeData[0]
                 };
+                if(req.query.search !== undefined && req.query.category === undefined && req.query.subcategory === undefined)
+                {
+                    obj["itemSearch"] = searchStr;
+                    obj["searchQuery"] = searchStr;
+                }
+                else if(req.query.search === undefined && req.query.category !== undefined && req.query.subcategory === undefined)
+                {
+                    obj["categorySearchQuery"] = catFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "");
+                    obj["categorySearchLink"] = catFilterStr;
+                }
+                else if(req.query.search === undefined && req.query.category === undefined && req.query.subcategory !== undefined)
+                {
+                    obj["subCategorySearchQuery"] = subCatFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "");
+                    obj["subCategorySearchLink"] = subCatFilterStr;
+                }
+                // console.log("queryUrl: " + queryUrl);
+                // console.log("catFilterStr: " + catFilterStr);
                 res.render("product_categories", obj);
             });
         });

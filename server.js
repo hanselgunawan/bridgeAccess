@@ -3,7 +3,7 @@ const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 
 var app = express();
-var port = process.env.PORT || 3306;
+var port = process.env.PORT || 3000;
 
 // Use the express.static middleware to serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
