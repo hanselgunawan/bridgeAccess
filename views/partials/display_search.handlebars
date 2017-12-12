@@ -15,15 +15,9 @@
             <div class="col-sm-3" style="margin-top:30px;">
                 <div class="thumbnail"  style="">
                     <center>
-                        {{#if ../minPrice}}
-                            <a  href="/product_details?id={{ id }}&min={{../minPrice}}&max={{../maxPrice}}&search={{ ../searchQuery }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&search={{ ../searchQuery }}">
-                            </a>
-                        {{else}}
-                            <a  href="/product_details?id={{ id }}&search={{ ../searchQuery }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&search={{ ../searchQuery }}">
-                            </a>
-                        {{/if}}
+                        <a  href="/shop/product_details/{{ id }}">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/shop/product_details/{{ id }}">
+                        </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
                             <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
@@ -37,15 +31,9 @@
             <div class="col-sm-3" style="margin-top:30px;">
                 <div class="thumbnail"  style="">
                     <center>
-                        {{#if ../minPrice}}
-                            <a  href="/product_details?id={{ id }}&min={{ ../minPrice }}&max={{ ../maxPrice }}&category={{ ../categorySearchQuery }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&category={{ ../categorySearchQuery }}">
-                            </a>
-                        {{else}}
-                            <a  href="/product_details?id={{ id }}&category={{ ../categorySearchQuery }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&category={{ ../categorySearchQuery }}">
-                            </a>
-                        {{/if}}
+                        <a  href="/shop/product_details/{{ id }}">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/shop/product_details/{{ id }}">
+                        </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
                             <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
@@ -59,15 +47,9 @@
             <div class="col-sm-3" style="margin-top:30px;">
                 <div class="thumbnail"  style="">
                     <center>
-                        {{#if ../minPrice}}
-                            <a  href="/product_details?id={{ id }}&min={{ ../minPrice }}&max={{ ../maxPrice }}&subcategory={{ ../subCategorySearchQuery }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&subcategory={{ ../subCategorySearchQuery }}">
-                            </a>
-                        {{else}}
-                            <a  href="/product_details?id={{ id }}&subcategory={{ ../subCategorySearchQuery }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_details?id={{ id }}&subcategory={{ ../subCategorySearchQuery }}">
-                            </a>
-                        {{/if}}
+                        <a  href="/shop/product_details/{{ id }}">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/shop/product_details/{{ id }}">
+                        </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
                             <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>
@@ -83,15 +65,9 @@
             <div class="col-sm-3" style="margin-top:30px;">
                 <div class="thumbnail"  style="">
                     <center>
-                        {{#if ../minPrice}}
-                            <a  href="/product_details?id={{ id }}&min={{ ../minPrice }}&max={{ ../maxPrice }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_detail/{{ id }}">
-                            </a>
-                        {{else}}
-                            <a  href="/product_details?id={{ id }}">
-                                <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/product_detail/{{ id }}">
-                            </a>
-                        {{/if}}
+                        <a  href="/shop/product_details/{{ id }}">
+                            <img height="130px;" width="130px;" src="{{ smallimage }}" alt="" style="margin-bottom: 0.5cm;" href="/shop/product_details/{{ id }}">
+                        </a>
                         <fieldset style="font-size: 12px;">{{ name }}</fieldset>
                         <div class="pull-center">
                             <p class="price" style="font-size: 12px; color: #f39c12;"><b>₱{{ price }}</b></p>

@@ -268,7 +268,7 @@
                 </span>
             </div>
             <div class="col-md-2 nav-item">
-                <a href="view_cart"><button type="button" class="btn btn-outline-warning btn-sm pull-right" style="height: 35px; margin-left: 4px; width: 100%;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</button></a>
+                <a href="/cart"><button type="button" class="btn btn-outline-warning btn-sm pull-right" style="height: 35px; margin-left: 4px; width: 100%;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</button></a>
             </div>
         </div>
 
@@ -301,11 +301,11 @@
     $(".searchItemBtn").on("click", function () {
         if($("#search_term").val() === "")
         {
-            window.location.href = "/product_categories";
+            window.location.href = "/shop/product_categories";
         }
         else
         {
-            window.location.href = "/product_categories/search/"+$("#search_term").val()+"";
+            window.location.href = "/shop/product_categories/search/"+$("#search_term").val()+"";
         }
     });
 
@@ -395,15 +395,15 @@
             max = {{ priceRange.max_price }};
         }
         {{#if itemSearch}}
-            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "&search={{ searchQuery }}";
+            window.location.href = "/shop/product_categories/filter?min="+ min + "&max=" + max + "&search={{ searchQuery }}";
         {{else if categorySearchQuery}}
-            var urlStr = "/product_categories/filter?min="+ min + "&max=" + max + "&category={{ categorySearchLink }}";
+            var urlStr = "/shop/product_categories/filter?min="+ min + "&max=" + max + "&category={{ categorySearchLink }}";
             window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'");
         {{else if subCategorySearchQuery}}
-            var urlStr = "/product_categories/filter?min="+ min + "&max=" + max + "&subcategory={{ subCategorySearchLink }}";
+            var urlStr = "/shop/product_categories/filter?min="+ min + "&max=" + max + "&subcategory={{ subCategorySearchLink }}";
             window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'");
         {{else}}
-            window.location.href = "/product_categories/filter?min="+ min + "&max=" + max + "";
+            window.location.href = "/shop/product_categories/filter?min="+ min + "&max=" + max + "";
         {{/if}}
     });
 </script>

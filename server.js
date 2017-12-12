@@ -20,8 +20,7 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require('./controllers/bridgeaccess_controller.js');
-app.use('/', routes);
+require('./routes')(app);
 
 app.listen(port, function() {
     console.log("Listening on PORT " + port);

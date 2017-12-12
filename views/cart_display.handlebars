@@ -17,6 +17,16 @@
         vertical-align: middle;
     }
 
+    .child {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .parent {
+        position: relative;
+    }
+
 
 
     /*Media Query*/
@@ -29,7 +39,7 @@
             width:36%;
             margin:1.5em 0;
         }
-        
+
         .actions .btn-info{
             float:left;
         }
@@ -44,60 +54,110 @@
             content: attr(data-th); font-weight: bold;
             display: inline-block; width: 8rem;
         }
-        
+
         table#cart tfoot td{display:block; }
-        table#cart tfoot td .btn{display:block;} 
+        table#cart tfoot td .btn{display:block;}
     }
 
 
 </style>
 
-
 <section class="content-section-a" style="background-color: #FFF; margin-top: 90px;">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8 mt-3">
                 <table id="cart" class="table table-hover table-condensed">
                     <thead>
-                        <tr>
-                            <th style="width:60%; font-size:18px;">Shopping Cart</th>
-                            <th style="width:10%; font-weight:normal; font-size:15px;"></th>
-                            <th style="width:8%; font-weight:normal; font-size:15px;">Quantity</th>
-                            <th style="width:22%; font-weight:normal; font-size:15px;" class="text-center">Price</th>
-                            <th style="width:10%"></th>
-                        </tr>
+                    <tr>
+                        <th style="width:60%; font-size:18px;">Shopping Cart</th>
+                        <th style="width:10%; font-weight:normal; font-size:15px;"></th>
+                        <th style="width:8%; font-weight:normal; font-size:15px;">Quantity</th>
+                        <th style="width:22%; font-weight:normal; font-size:15px;" class="text-center">Price</th>
+                        <th style="width:10%"></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                    {{#each cart_content}}
+                        <tr cart-id={{id}}>
                             <td data-th="Product">
                                 <div class="row">
-                                    <div class="col-sm-2 hidden-xs"><img src="https://img.goods.ph/G1/M00/05/B4/wKgAAlmgKoeAUJP6AAN6WCqSCVs428_200x200.jpg" alt="..." class="img-responsive"/></div>
-                                    <div class="col-sm-10">
-                                        <h4 class="nomargin">Kingmax Flashdrive</h4>
-                                        <p>Kingmax Flashdrive 16GB PD-71 is a USB 2.0 that is enough for your transfer of photos, mp3s and video files from pc to pc. Order online now at Goods.ph!</p>
+                                    <div class="col-sm-2 hidden-xs"><img src="{{smallimage}}" alt="{{name}}-img" class="img-responsive"/></div>
+                                    <div class="col-sm-10 parent">
+                                        <h6 class="nomargin child">{{name}}</h6>
                                     </div>
                                 </div>
                             </td>
                             <td data-th=" "></td>
                             <td data-th="Quantity">
-                                <input type="number" class="form-control text-center" value="1">
+                                <input id='qty-cid-{{id}}'type="number" class="form-control text-center" value="{{quantity}}">
                             </td>
-                            <td data-th="Price" class="text-center">₱ 500.00</td>
+                            <td data-th="Price" class="text-center">₱ {{price}}</td>
                             <td class="actions" data-th="">
-                                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                                <button class="btn btn-danger btn-sm del_item"><i class="fa fa-trash-o"></i></button>
+                                <button class="btn btn-danger btn-md del_item"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
+                    {{/each}}
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-                            <td colspan="2" class="hidden-xs"></td>
-                            <td class="hidden-xs text-center"><strong>Total ₱ 500.00</strong></td>
-                            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
-                        </tr>
-                    </tfoot>
                 </table>
+                <hr>
+            </div>
+
+            {{!-- ORDER SUMMARY --}}
+            <div class="col-md-4 pl-5 mt-5">
+                <div class="panel panel-default">
+                    <div id="orderSummary">
+                        <div class="row table-bordered mt-3" style="position:fixed; width:30%;">
+                            <div class="col-md-12 mt-4 mb-2">
+                                <h5>Order Summary</h5>
+                                <hr>
+
+                                <div class="row">
+                                    <ul class="navbar-nav" style="width:100%;">
+                                        <li>
+                                            <div class="row pl-3 pr-3">
+                                                <div class="col-sm-6"> Cart Subtotal </div>
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-4 text-right"> ₱ 500.00 </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row pl-3 pr-3">
+                                                <div class="col-sm-6"> Interest (2%) </div>
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-4 text-right"> ₱ 10.00 </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-6"> <b>ORDER TOTAL</b> </div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-4 text-right">
+                                        {{!--                   Total Order value                       --}}
+                                        <input name="sum" id="sum" type="hidden" value="510">
+                                        ₱ 510.00
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-6 text-center mt-1" style="padding-right:10px;">
+                                        <a href="#" class="btn btn-outline-warning btn-block"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                                    </div>
+                                    <div id="updateBtn" class="col-sm-6 text-center mt-1" style="padding-left:10px;">
+                                        <a class="btn btn-warning btn-block">Update Cart <i class="fa fa-refresh"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-sm-12 text-center">
+                                        <a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -121,20 +181,36 @@
         });
     });
 
-    $('.del_item').click(function() {
-        if (confirm('Are you sure you want to delete？')) {
-            var item_id = $(this).val();
-            $.ajax({
-                url: base_url+'product/delete_item',
-                type: 'POST',
-                data: {'id':item_id},
-                dataType:'JSON',
-                success:function(data){
-                    window.location.reload();
-                }
-            });
-        }
+    $('.del_item').on('click', function(){
+        let cid = $(this).parent().parent().attr("cart-id");
+        $.ajax({
+            type: "POST",
+            url: '/cart/delete?cart_id='+cid,
+            success:function(data){
+                window.location.reload();
+            }
+        })
     });
+
+    $('#updateBtn').on('click', function(){
+        let a = []; cid_a = [];
+        {{#each cart_content}}
+            a.push($("#qty-cid-{{id}}").val().trim());
+            cid_a.push({{id}});
+        {{/each}}
+        console.log(a);
+
+        $.ajax({
+            type: "POST",
+            url: '/cart/update',
+            data: {'a':a, 'cid':cid_a},
+            dataType:'JSON',
+            success:function(data){
+                window.location.reload();
+            }
+        })
+    });
+
 
     $(document).on('change', '.btn-file :file', function() {
         var input = $(this),

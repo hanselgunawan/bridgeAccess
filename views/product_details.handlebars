@@ -92,8 +92,6 @@ Product Card Styles
             {{!-- Product picture --}}
             <div class="col-md-4">
                 <img class="img-responsive" src="{{ product.bigimage }}" alt=""/>
-                <!--id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"-->
-                <!--<div id="overlay" onmousemove="zoomIn(event)"></div>-->
             </div>
 
             {{!-- Product descriptions and price --}}
@@ -118,27 +116,7 @@ Product Card Styles
                             {{!-- Add to cart button --}}
                             <a href="#" onclick="$(this).closest('form').submit()" class="btn btn-xs btn-add-to-cart mt-2" role="button"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Add to Cart</a>
                             {{!-- Back to products categories button --}}
-                            {{#if searchQuery }}
-                                {{#if minPrice}}
-                                    <a href="/product_categories/filter?min={{minPrice}}&max={{maxPrice}}&search={{searchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
-                                {{else}}
-                                    <a href="/product_categories/search/{{searchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
-                                {{/if}}
-                            {{ else if subCategorySearchQuery }}
-                                {{#if minPrice}}
-                                    <a href="/product_categories/filter?min={{minPrice}}&max={{maxPrice}}&category={{subCategorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
-                                {{else}}
-                                    <a href="/product_categories/subcategory/{{subCategorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
-                                {{/if}}
-                            {{ else if categorySearchQuery }}
-                                {{#if minPrice}}
-                                    <a href="/product_categories/filter?min={{minPrice}}&max={{maxPrice}}&category={{categorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
-                                {{else}}
-                                    <a href="/product_categories/category/{{categorySearchQuery}}" class="btn btn-secondary mt-2" role="button">Back</a>
-                                {{/if}}
-                            {{else}}
-                                <a href="/product_categories" class="btn btn-secondary mt-2" role="button">Back</a>
-                            {{/if}}
+                            <a class="btn btn-secondary mt-2" role="button" onclick="window.history.back(); return false;">Back</a>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -149,19 +127,13 @@ Product Card Styles
         <div class="row panelBottom mt-5 text-center">
             <div class="col-md-12 text-center mt-2">
                 <h2>Related Products :</h2>
-                {{!-- Retaled products carousel --}}
                 <div class="card">
                     <div class="card-block">
-                        {{!--                         <div class="row justify-content-center">
-                                                    <div class="col-lg-10" >  --}}
                         <div id="itemslider" class="carousel carousel-showmanymoveone slide" data-ride="carousel">
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active justify-content-center">
-
-                                    <!--   <div class="carousel-item active"> -->
-
                                     {{!-- Related products picture --}}
-                                    <a  href=""><img style="height:150px;" src="../assets/images/shop/home.jpg" class="d-block img-fluid ml-auto mr-auto"><span  style="font-size:12px; color: rgba(0,0,0,.5);">Home and Living</span></a>
+                                    <a  href=""><img style="height:150px;" src="assets/images/shop/home.jpg" class="d-block img-fluid ml-auto mr-auto"><span  style="font-size:12px; color: rgba(0,0,0,.5);">Home and Living</span></a>
 
                                 </div>
                             </div>
