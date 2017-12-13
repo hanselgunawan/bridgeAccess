@@ -90,12 +90,20 @@ exports.searchItem = (req, res) => {
             }
             bridgeAccessModel.selectPriceRangeBySearch("bridge_goodsph_products", req.params.itemSearch, function (priceRangeData){
                 var obj = {
-                    itemSearch: searchData,
-                    product: searchData,
                     searchQuery: req.params.itemSearch,
                     categories: getCategory(catData),
-                    priceRange: priceRangeData[0]
                 };
+                if(searchData.length>0)
+                {
+                    obj["itemSearch"] = searchData;
+                    obj["product"] = searchData;
+                    obj["priceRange"] = priceRangeData[0]
+                }
+                else
+                {
+                    obj["priceRange"] = {max_price:0, min_price:0};
+                    obj["searchNotFound"] = true;
+                }
                 res.render("product_categories", obj);
             });
         });
