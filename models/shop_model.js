@@ -19,6 +19,11 @@ var dbCall = {
             callback(data);
         });
     },
+    selectProductByPage: function (tableName, min_price, max_price, search, category, subcategory, offset, callback) {
+        orm.selectProductByPage(tableName, min_price, max_price, search, category, subcategory, offset, function (data) {
+            callback(data);
+        });
+    },
     selectPriceRange: function (tableName, callback) {
         orm.selectPriceRange(tableName, function (data) {
             callback(data);

@@ -11,7 +11,61 @@ var orm = {
     });
   },
   selectAllProducts: function(tableName, callback) {
-      var queryString = "SELECT * FROM ?? LIMIT 0,30";
+      var queryString = "SELECT * FROM ??";
+      connection.query(queryString, [tableName], function(err, result) {
+          if(err) throw err;
+          callback(result);
+      });
+  },
+  selectProductByPage: function(tableName, min_price, max_price, search, category, subcategory, offset, callback) {
+      var queryString = "";
+      if(min_price === undefined)
+      {
+          if(search === undefined && category === undefined && subcategory === undefined)
+          {
+              queryString = "SELECT * FROM ?? LIMIT 52 OFFSET " + offset + "";
+          }
+          else if(search !== undefined && category === undefined && subcategory === undefined)
+          {
+              queryString = "SELECT * FROM ?? where name LIKE '%" + search + "%' LIMIT 52 OFFSET " + offset + "";
+          }
+          else if(search === undefined && category !== undefined && subcategory === undefined)
+          {
+              queryString = "SELECT * FROM ?? WHERE categoryid1=\""+category+"\" LIMIT 52 OFFSET " + offset + "";
+          }
+          else if(search === undefined && category === undefined && subcategory !== undefined)
+          {
+              queryString = "SELECT * FROM ?? WHERE categoryid2=\""+subcategory+"\" LIMIT 52 OFFSET " + offset + "";
+          }
+      }
+      else if(min_price !== undefined)
+      {
+          if(search === "" && category === "" && subcategory === "")
+          {
+              queryString = "SELECT * FROM ?? "
+                           +"HAVING CAST(price AS DECIMAL(10,2)) >= "+min_price+" AND CAST(price AS DECIMAL(10,2)) <= "+max_price+" "
+                           +"LIMIT 52 OFFSET " + offset + "";
+          }
+          else if(search !== "" && category === "" && subcategory === "")
+          {
+              queryString = "SELECT * FROM ?? WHERE name LIKE '%" + search + "%' "
+                          + "HAVING CAST(price AS DECIMAL(10,2)) >= " + min_price + " AND CAST(price AS DECIMAL(10,2)) <= " + max_price + " "
+                          + "LIMIT 52 OFFSET " + offset + "";
+          }
+          else if(search === "" && category !== "" && subcategory === "")
+          {
+              queryString = "SELECT * FROM ?? WHERE categoryid1 = \"" + category + "\" "
+                          + "HAVING CAST(price AS DECIMAL(10,2)) >= " + min_price + " AND CAST(price AS DECIMAL(10,2)) <= " + max_price + " "
+                          + "LIMIT 52 OFFSET " + offset + "";
+          }
+          else if(search === "" && category === "" && subcategory !== "")
+          {
+              queryString = "SELECT * FROM ?? WHERE categoryid2 = \"" + subcategory + "\" "
+                          + "HAVING CAST(price AS DECIMAL(10,2)) >= " + min_price + " AND CAST(price AS DECIMAL(10,2)) <= " + max_price + " "
+                          + "LIMIT 52 OFFSET " + offset + "";
+          }
+      }
+
       connection.query(queryString, [tableName], function(err, result) {
           if(err) throw err;
           callback(result);
@@ -83,14 +137,14 @@ var orm = {
       });
   },
   findCategory: function (tableName, categorySearch, callback) {
-      var queryString = "SELECT * FROM ?? WHERE categoryid1=\""+categorySearch+"\" LIMIT 25";
+      var queryString = "SELECT * FROM ?? WHERE categoryid1=\""+categorySearch+"\"";
       connection.query(queryString, [tableName], function(err, result) {
           if(err) throw err;
           callback(result);
       });
   },
   findSubCategory: function (tableName, categorySearch, callback) {
-      var queryString = "SELECT * FROM ?? WHERE categoryid2=\"" + categorySearch + "\" LIMIT 25";
+      var queryString = "SELECT * FROM ?? WHERE categoryid2=\"" + categorySearch + "\"";
       connection.query(queryString, [tableName], function(err, result) {
           if(err) throw err;
           callback(result);
