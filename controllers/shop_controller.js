@@ -103,7 +103,8 @@ function pagination(obj, productData, page)
         active:true
     }
 
-    obj["paginationPages"] = paginationNum;
+    if(productData.length > 52) obj["paginationPages"] = paginationNum;
+
     obj["prev"] = prev;
     obj["next"] = next;
     obj["first"] = 1;
