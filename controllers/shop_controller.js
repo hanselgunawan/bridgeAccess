@@ -62,7 +62,16 @@ function pagination(obj, productData, page)
     if(currentPage+2 > totalPage) next = totalPage;
     else next = currentPage + 2;
 
-    if(currentPage < 3)
+    if(totalPage <= 5)
+    {
+        for(let i=0;i<totalPage;i++)
+        {
+            paginationNum.push({
+                pageNum: i+1
+            });
+        }
+    }
+    else if(currentPage < 3)
     {
         for(let i=0;i<5;i++)
         {
@@ -327,25 +336,21 @@ exports.filterByUserInput = (req, res) => {
                                 obj["itemSearch"] = searchStr;
                                 obj["searchQuery"] = searchStr;
                                 obj["filter"] = true;
-                                console.log("SEARCHHHH");
                             }
                             else if(req.query.search === undefined && req.query.category !== undefined && req.query.subcategory === undefined)
                             {
                                 obj["categorySearchQuery"] = catFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "");
                                 obj["categorySearchLink"] = catFilterStr;
                                 obj["filter"] = true;
-                                console.log("CATEGORRYYY");
                             }
                             else if(req.query.search === undefined && req.query.category === undefined && req.query.subcategory !== undefined)
                             {
                                 obj["subCategorySearchQuery"] = subCatFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "");
                                 obj["subCategorySearchLink"] = subCatFilterStr;
                                 obj["filter"] = true;
-                                console.log("SUBBBBBSSS");
                             }
 
                             obj = pagination(obj, filterData, req.params.page);
-                            console.log("HAHAHA: " + obj.filter);
                             res.render("product_categories", obj);
                         });
                     });
@@ -366,6 +371,10 @@ exports.showProductDetail = (req, res) => {
         };
         res.render("product_details", obj);
     });
+};
+
+exports.displayOrder = (req, res) => {
+    res.render("order_display");
 };
 
 exports.successCheckout = (req, res) => {

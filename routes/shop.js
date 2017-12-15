@@ -9,6 +9,7 @@ router.get('/product_categories/category/:categorySearch/:page', shop_controller
 router.get('/product_categories/subcategory/:subCategorySearch/:page', shop_controller.filterBySubCategory);
 router.get('/product_categories/:page/filter', shop_controller.filterByUserInput);
 router.get('/product_details/:itemId', shop_controller.showProductDetail);
+router.get('/order_display', shop_controller.displayOrder);
 router.get('/success_checkout', shop_controller.successCheckout);
 
 module.exports = router;
