@@ -304,90 +304,132 @@
                     <ul class="pagination justify-content-center">
                         {{#if searchQuery}}
                             {{#if filter}}
+                                {{#if pageOne}}
+                                {{else}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{prev}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&search={{searchQuery}}">&larr;</a>
+                                    <a class="page-link" href="/shop/product_categories/{{prev}}/filter?min={{minPrice}}&max={{maxPrice}}&search={{searchQuery}}">&larr;</a>
                                 </li>
+                                {{/if}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{first}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&search={{searchQuery}}">First</a>
+                                    <a class="page-link" href="/shop/product_categories/{{first}}/filter?min={{minPrice}}&max={{maxPrice}}&search={{searchQuery}}">First</a>
                                 </li>
                                 {{#each paginationPages}}
                                     <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                                 {{/each}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{last}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&search={{searchQuery}}">Last</a>
+                                    <a class="page-link" href="/shop/product_categories/{{last}}/filter?min={{minPrice}}&max={{maxPrice}}&search={{searchQuery}}">Last</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{next}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&search={{searchQuery}}">&rarr;</a>
-                                </li>
+                                {{#if lastPage}}
+                                {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="/shop/product_categories/{{next}}/filter?min={{minPrice}}&max={{maxPrice}}&search={{searchQuery}}">&rarr;</a>
+                                    </li>
+                                {{/if}}
                             {{else}}
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{prev}}">&larr;</a></li>
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{first}}">First</a></li>
+                                {{#if pageOne}}
+                                {{else}}
+                                    <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{searchQuery}}/{{prev}}">&larr;</a></li>
+                                {{/if}}
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{searchQuery}}/{{first}}">First</a></li>
                                 {{#each paginationPages}}
                                     <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                                 {{/each}}
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{last}}">Last</a></li>
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{next}}">&rarr;</a></li>
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{searchQuery}}/{{last}}">Last</a></li>
+                                {{#if lastPage}}
+                                {{else}}
+                                    <li class="page-item"><a class="page-link" href="/shop/product_categories/search/{{searchQuery}}/{{next}}">&rarr;</a></li>
+                                {{/if}}
                             {{/if}}
                         {{else if categorySearchQuery}}
                             {{#if filter}}
+                                {{#if pageOne}}
+                                {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="/shop/product_categories/{{prev}}/filter?min={{minPrice}}&max={{maxPrice}}&category={{categorySearchQuery}}">&larr;</a>
+                                    </li>
+                                {{/if}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{prev}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&category={{categorySearchQuery}}">&larr;</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{first}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&category={{categorySearchQuery}}">First</a>
+                                    <a class="page-link" href="/shop/product_categories/{{first}}/filter?min={{minPrice}}&max={{maxPrice}}&category={{categorySearchQuery}}">First</a>
                                 </li>
                                 {{#each paginationPages}}
                                     <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                                 {{/each}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{last}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&category={{categorySearchQuery}}">Last</a>
+                                    <a class="page-link" href="/shop/product_categories/{{last}}/filter?min={{minPrice}}&max={{maxPrice}}&category={{categorySearchQuery}}">Last</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{next}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&category={{categorySearchQuery}}">&rarr;</a>
-                                </li>
+                                {{#if lastPage}}
+                                {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="/shop/product_categories/{{next}}/filter?min={{minPrice}}&max={{maxPrice}}&category={{categorySearchQuery}}">&rarr;</a>
+                                    </li>
+                                {{/if}}
                             {{else}}
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{prev}}">&larr;</a></li>
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{first}}">First</a></li>
+                                {{#if pageOne}}
+                                {{else}}
+                                    <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{categorySearchLink}}/{{prev}}">&larr;</a></li>
+                                {{/if}}
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{categorySearchLink}}/{{first}}">First</a></li>
                                 {{#each paginationPages}}
                                     <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                                 {{/each}}
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{last}}">Last</a></li>
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{next}}">&rarr;</a></li>
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{categorySearchLink}}/{{last}}">Last</a></li>
+                                {{#if lastPage}}
+                                {{else}}
+                                    <li class="page-item"><a class="page-link" href="/shop/product_categories/category/{{categorySearchLink}}/{{next}}">&rarr;</a></li>
+                                {{/if}}
                             {{/if}}
                         {{else if subCategorySearchQuery}}
                             {{#if filter}}
+                                {{#if pageOne}}
+                                {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="/shop/product_categories/{{prev}}/filter?min={{minPrice}}&max={{maxPrice}}&subcategory={{subCategorySearchQuery}}">&larr;</a>
+                                    </li>
+                                {{/if}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{prev}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&subcategory={{subCategorySearchQuery}}">&larr;</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{first}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&subcategory={{subCategorySearchQuery}}">First</a>
+                                    <a class="page-link" href="/shop/product_categories/{{first}}/filter?min={{minPrice}}&max={{maxPrice}}&subcategory={{subCategorySearchQuery}}">First</a>
                                 </li>
                                 {{#each paginationPages}}
                                     <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                                 {{/each}}
                                 <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{last}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&subcategory={{subCategorySearchQuery}}">Last</a>
+                                    <a class="page-link" href="/shop/product_categories/{{last}}/filter?min={{minPrice}}&max={{maxPrice}}&subcategory={{subCategorySearchQuery}}">Last</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="/shop/product_categories/{{next}}/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&subcategory={{subCategorySearchQuery}}">&rarr;</a>
-                                </li>
+                                {{#if lastPage}}
+                                {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="/shop/product_categories/{{next}}/filter?min={{minPrice}}&max={{maxPrice}}&subcategory={{subCategorySearchQuery}}">&rarr;</a>
+                                    </li>
+                                {{/if}}
                             {{else}}
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{prev}}">&larr;</a></li>
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{first}}">First</a></li>
+                                {{#if pageOne}}
+                                {{else}}
+                                    <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{subCategorySearchLink}}/{{prev}}">&larr;</a></li>
+                                {{/if}}
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{subCategorySearchLink}}/{{first}}">First</a></li>
                                 {{#each paginationPages}}
                                     <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                                 {{/each}}
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{last}}">Last</a></li>
-                                <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{next}}">&rarr;</a></li>
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{subCategorySearchLink}}/{{last}}">Last</a></li>
+                                {{#if lastPage}}
+                                {{else}}
+                                    <li class="page-item"><a class="page-link" href="/shop/product_categories/subcategory/{{subCategorySearchLink}}/{{next}}">&rarr;</a></li>
+                                {{/if}}
                             {{/if}}
                         {{else}}
-                            <li class="page-item"><a class="page-link" href="/shop/product_categories/{{prev}}">&larr;</a></li>
+                            {{#if pageOne}}
+                            {{else}}
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/{{prev}}">&larr;</a></li>
+                            {{/if}}
                             <li class="page-item"><a class="page-link" href="/shop/product_categories/{{first}}">First</a></li>
                             {{#each paginationPages}}
                                 <li class="page-item {{#if active}}active{{/if}}"><a class="page-link {{#if active}}paginationActive{{/if}}" href="#">{{ pageNum }}</a></li>
                             {{/each}}
                             <li class="page-item"><a class="page-link" href="/shop/product_categories/{{last}}">Last</a></li>
-                            <li class="page-item"><a class="page-link" href="/shop/product_categories/{{next}}">&rarr;</a></li>
+                            {{#if lastPage}}
+                            {{else}}
+                                <li class="page-item"><a class="page-link" href="/shop/product_categories/{{next}}">&rarr;</a></li>
+                            {{/if}}
                         {{/if}}
                     </ul>
                 </nav>
@@ -515,7 +557,7 @@
             {{#if filter}}
                 window.location.href = "/shop/product_categories/"+$(event.target).text()+"/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&search={{searchQuery}}";
             {{else}}
-                window.location.href = "/shop/product_categories/search/{{itemSearch}}/"+ $(event.target).text() +"";
+                window.location.href = "/shop/product_categories/search/{{searchQuery}}/"+ $(event.target).text() +"";
             {{/if}}
         {{else if categorySearchQuery}}
             {{#if filter}}
@@ -523,14 +565,14 @@
             {{else}}
                 var urlStr = "/shop/product_categories/category/{{categorySearchQuery}}/"+ $(event.target).text() +"";
             {{/if}}
-            window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'");
+            window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'").replace("'s", "%5C%5C's");
         {{else if subCategorySearchQuery}}
             {{#if filter}}
                 var urlStr = "/shop/product_categories/"+$(event.target).text()+"/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}&subcategory={{subCategorySearchQuery}}";
             {{else}}
                 var urlStr = "/shop/product_categories/subcategory/{{subCategorySearchQuery}}/"+ $(event.target).text() +"";
             {{/if}}
-            window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'");
+            window.location.href = urlStr.replace("amp;", "").replace("&#x27;", "'").replace("'s", "%5C%5C's");
         {{else}}
         {{#if priceRange.min_price}}
             window.location.href = "/shop/product_categories/"+ $(event.target).text() +"/filter?min={{priceRange.min_price}}&max={{priceRange.max_price}}";

@@ -52,26 +52,21 @@ function pagination(obj, productData, page)
     var totalPage = Math.ceil(productData.length/productPerPage);
     var currentPage = page-1;
     var paginationNum = [];
-    // console.log(totalPage);
+    console.log(totalPage);
 
     var prev;
-    if(currentPage === 0) prev = 1;
-    else prev = currentPage;
+    if(currentPage === 0){
+        prev = 1;
+        obj["pageOne"] = true;
+    } else {
+        prev = currentPage;
+    };
 
     var next;
     if(currentPage+2 > totalPage) next = totalPage;
     else next = currentPage + 2;
 
-    if(totalPage <= 5)
-    {
-        for(let i=0;i<totalPage;i++)
-        {
-            paginationNum.push({
-                pageNum: i+1
-            });
-        }
-    }
-    else if(currentPage < 3)
+    if(currentPage < 3)
     {
         for(let i=0;i<5;i++)
         {
@@ -99,6 +94,10 @@ function pagination(obj, productData, page)
         }
     }
 
+    if(currentPage+1 === totalPage) {
+        obj["lastPage"] = true;
+    }
+
     switch(currentPage) {
         case 0: paginationNum[0]["active"] = true; break;
         case 1: paginationNum[1]["active"] = true; break;
@@ -106,10 +105,19 @@ function pagination(obj, productData, page)
         case totalPage-2: paginationNum[3]["active"] = true; break;
         case totalPage-1: paginationNum[4]["active"] = true; break;
         default: paginationNum[2]["active"] = true; break;
+
     }
 
     if (currentPage === paginationNum[0] ) {
         active:true
+    }
+    
+    switch(totalPage)
+    {
+        case 1: paginationNum.splice(1, 4); break;
+        case 2: paginationNum.splice(2, 4); break;
+        case 3: paginationNum.splice(3, 4); break;
+        case 4: paginationNum.splice(4, 4); break;
     }
 
     if(productData.length > 52) obj["paginationPages"] = paginationNum;
@@ -199,7 +207,7 @@ exports.searchItem = (req, res) => {
 exports.filterByCategory = (req, res) => {
     bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
         var catFilterStr = "";
-        catFilterStr = req.params.categorySearch;
+        catFilterStr = req.params.categorySearch.replace("\\\\", "%5C%5C");
         bridgeAccessModel.findCategory("bridge_goodsph_products", req.params.categorySearch, function (categorySearchData) {
             if(req.params.categorySearch === "")
             {
@@ -236,7 +244,7 @@ exports.filterByCategory = (req, res) => {
 exports.filterBySubCategory = (req, res) => {
     bridgeAccessModel.selectAllCategoryAndSubcategoryName("bridge_goodsph_products", function (catData) {
         var subCatFilterStr = "";
-        subCatFilterStr = req.params.subCategorySearch;
+        subCatFilterStr = req.params.subCategorySearch.replace("\\\\", "%5C%5C");
         bridgeAccessModel.findSubCategory("bridge_goodsph_products", req.params.subCategorySearch, function (subCategorySearchData) {
             if(req.params.subCategorySearch === "")
             {
@@ -339,13 +347,13 @@ exports.filterByUserInput = (req, res) => {
                             }
                             else if(req.query.search === undefined && req.query.category !== undefined && req.query.subcategory === undefined)
                             {
-                                obj["categorySearchQuery"] = catFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "");
+                                obj["categorySearchQuery"] = catFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "").replace("%5C%5C","");
                                 obj["categorySearchLink"] = catFilterStr;
                                 obj["filter"] = true;
                             }
                             else if(req.query.search === undefined && req.query.category === undefined && req.query.subcategory !== undefined)
                             {
-                                obj["subCategorySearchQuery"] = subCatFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "");
+                                obj["subCategorySearchQuery"] = subCatFilterStr.replace(/%20/g, " ").replace(/%27/g, "'").replace(/\\/g, "").replace("%5C%5C","");
                                 obj["subCategorySearchLink"] = subCatFilterStr;
                                 obj["filter"] = true;
                             }
