@@ -4,7 +4,7 @@ const url = require("url");
 const router = express.Router();
 
 exports.viewCart = async (req, res) => {
-	var obj = {cart_content: await cart.view(1)}
+	var obj = {cart_content: await cart.view(req.body.userid)}
 	res.render("cart_display", obj);
 	//res.json(obj)
 };

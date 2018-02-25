@@ -168,6 +168,27 @@
     var base_url = window.location.origin+"/";
     var sum = $('#sum').val();
 
+    let cookieStr = "";
+    let cookieObj = [];
+    let obj = {};
+
+
+    function parseCookieStr(cookieStr) {
+        let cookieArr = [];
+        cookieArr = cookieStr.split(";");
+        cookieArr.forEach(data => {
+            let keyValue = [];
+            keyValue = data.split("=");
+            obj[keyValue[0]] = keyValue[1];
+        });
+        cookieObj.push(obj);
+    }
+
+    $(document).ready(function() {
+        cookieStr = "user_id=1;email=hahaha@gmail.com;user_role=supervisor;company_id=2";//document.cookie
+        parseCookieStr(cookieStr);
+    });
+
     $(".qty_drop").on('change', function (){ //change event for select
         $.ajax({ //ajax call
             type: "POST", //method == POST

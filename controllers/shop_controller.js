@@ -111,7 +111,7 @@ function pagination(obj, productData, page)
     if (currentPage === paginationNum[0] ) {
         active:true
     }
-    
+
     switch(totalPage)
     {
         case 1: paginationNum.splice(1, 4); break;
